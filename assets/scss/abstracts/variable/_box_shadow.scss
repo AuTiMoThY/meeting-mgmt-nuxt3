@@ -1,0 +1,17 @@
+$boxShadow: 0px 9px 21px rgba(0, 0, 0, 0.75);
+$boxShadowHover: 3px 10px 21px rgba(0, 0, 0, 1);
+$boxShadowHover1:
+    0 5px 11px 0 rgba(0, 0, 0, 0.18),
+    0 4px 15px 0 rgba(0, 0, 0, 0.15);
+
+$boxShadowActive1:
+    0 3px 7px 0 rgba(0, 0, 0, 0.58),
+    0 2px 9px 0 rgba(0, 0, 0, 0.55);
+
+$boxShadow-weak: 0px 3px 3px rgba(#454c54, 0.2);
+
+$dropShadow: (
+    "window": 0px 16px 48px #{rgba(color("theme-color"), 0.1)},
+    "dropdown": 0px 16px 16px #{rgba(color("theme-color"), 0.3)},
+    "sidebar": 0px 0px 8px #{rgba(color("theme-color"), 0.3)}
+);

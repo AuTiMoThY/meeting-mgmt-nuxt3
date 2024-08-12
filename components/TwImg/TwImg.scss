@@ -1,0 +1,27 @@
+.tw_img {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+        // width: 100%;
+        // height: 100%;
+        aspect-ratio: var(--w) / var(--h);
+        // object-fit: cover;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .default {
+        .js-hover & {
+            opacity: 0;
+        }
+    }
+    .hover {
+        @include absolute(0, $L: 0);
+        opacity: 0;
+
+        .js-hover & {
+            opacity: 1;
+        }
+    }
+}

@@ -1,0 +1,27 @@
+@function calc-gap($gap, $colNum) {
+    @return math.div($gap * ($colNum - 1), $colNum);
+}
+@function calc-gap-vw($gap, $colNum) {
+    @return $gap * math.div(($colNum - 1), $colNum) + 0vw;
+}
+
+@function set-flex-basis($gap, $colNum) {
+    // 计算基准百分比
+    $basis: math.div(100%, $colNum);
+
+    // 计算间隙
+    $gapWidth: calc-gap($gap, $colNum);
+    // 返回计算后的flex-basis值
+    @return calc(#{$basis} - #{$gapWidth}px);
+}
+
+@function set-flex-basis-vw($gap, $colNum, $base-width) {
+    // 计算基准百分比
+    $basis: math.div(100%, $colNum);
+    // 将基准百分比转换为vw单位
+    $basisVW: set-vw-without-unit(math.div($basis * 1080, 100), $base-width);
+    // 计算间隙
+    $gapWidth: calc-gap-vw($gap, $colNum);
+    // 返回计算后的flex-basis值，确保使用calc()进行vw与px的计算
+    @return calc(#{$basisVW} - #{$gapWidth});
+}

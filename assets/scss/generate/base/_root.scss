@@ -1,0 +1,21 @@
+:root {
+    --spacing: 104px;
+    --spacing-half: calc(104px / 2);
+
+    @media screen and (max-width: 768px) {
+        --spacing: 56px;
+        --spacing-half: calc(56px / 2);
+    }
+}
+
+:root {
+    @each $multiple in (1, 2, 4, 8, 16) {
+        --spacing-#{$multiple}x: #{8px * $multiple};
+    }
+}
+
+:root {
+    @each $name, $value in $color {
+        --#{$name}: #{$value};
+    }
+}

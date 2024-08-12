@@ -1,0 +1,38 @@
+@use "sass:math";
+// @import "bootstrap/scss/functions";
+// @import "bootstrap/scss/variables";
+// @import "bootstrap/scss/variables-dark";
+
+// custom variable
+@import "abstracts/variable/variant";
+@import "abstracts/variable/color";
+@import "abstracts/functions/color";
+@import "abstracts/functions/px-to-rem";
+@import "abstracts/variable/font";
+@import "abstracts/variable/easing";
+@import "abstracts/variable/box_shadow";
+
+// @import "bootstrap/scss/mixins";
+
+// ********** MIXIN & FUNCTIONS START ********** //
+@import "abstracts/functions/checking";
+@import "abstracts/functions/responsive-clamp";
+@import "abstracts/functions/set-vw";
+@import "abstracts/functions/set-flex-basis";
+// @import "abstracts/functions/min-set-vw";
+
+@import "abstracts/mixin/multiline_ellipsis";
+@import "abstracts/mixin/gradient";
+@import "abstracts/mixin/psudoClass";
+@import "abstracts/mixin/position";
+@import "abstracts/mixin/wh";
+@import "abstracts/mixin/circle";
+@import "abstracts/mixin/triangle";
+@import "abstracts/mixin/media";
+@import "abstracts/mixin/aspectRatioBox";
+@import "abstracts/mixin/font_setting";
+@import "abstracts/mixin/element_effect";
+@import "abstracts/mixin/twImg_hover";
+@import "abstracts/mixin/hover_underline";
+
+// @import "abstracts/mixin/popup_base";

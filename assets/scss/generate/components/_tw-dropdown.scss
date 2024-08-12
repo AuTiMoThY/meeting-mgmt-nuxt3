@@ -1,0 +1,107 @@
+.tw-dropdown {
+    position: relative;
+    &-inner {
+        position: relative;
+        min-width: 120px;
+        border-radius: 32px;
+        padding: 6px 8px;
+        border: 1px solid #4368c8;
+        cursor: pointer;
+
+        display: flex;
+        gap: 8px;
+
+        @extend %btn-hover-effect;
+
+        .dropdown-arrow-icon {
+            @include absolute(50%, 3px);
+            translate: 0 -50%;
+            display: block;
+            width: 20px;
+            height: 20px;
+        }
+
+        .label-icon {
+            @include wh(20);
+        }
+    }
+
+    &-menu {
+        @include absolute($L: 50%);
+        z-index: 2;
+        min-width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        transition:
+            max-height 0.3s ease-in-out,
+            border 0.3s ease-in-out;
+        transform: translate(-50%, 8px);
+
+        border-radius: 16px;
+        border: 0px solid #4368c8;
+        .js-open & {
+            max-height: 500px;
+            border: 1px solid #4368c8;
+        }
+    }
+    &-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        text-align: center;
+        background-color: #fff;
+
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        white-space: nowrap;
+        word-break: keep-all;
+
+        &:hover {
+            background-color: #4368c8;
+            color: #fff;
+        }
+
+        .currency-icon {
+            @include wh(20);
+        }
+    }
+}
+
+.tw-dropdown-icon {
+    .icon {
+        display: block;
+        @include circle(20);
+    }
+}
+
+.tw-dropdown-light {
+    .tw-dropdown-inner {
+        border: 1px solid #fff;
+    }
+
+    &.js-open {
+        .tw-dropdown-menu {
+            border: 1px solid #82a4e4;
+        }
+    }
+
+    .tw-dropdown-menu {
+        background-color: var(--dark-blue);
+    }
+    .tw-dropdown-item {
+        background-color: var(--dark-blue);
+        text-align: left;
+        color: var(--theme-color);
+
+        &:not(:first-of-type) {
+            border-top: 1px solid var(--medium-blue);
+        }
+
+        &:hover {
+            background-color: rgba(#061f78, 0.5);
+            color: #fff;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+/* *****************************************/
+/*    css
+/*    V 20240515
+/*        by AuOzzy
+/******************************************/
+@import "core";
+
+/* ↓↓↓ ***** bootstrap reboot ***** ↓↓↓ */
+@import "bootstrap/dist/css/bootstrap-reboot.min.css";
+/* ↑↑↑ ***** bootstrap reboot ***** ↑↑↑ */
+
+/* ↓↓↓ ***** reset ***** ↓↓↓ */
+@import "generate/base/reset";
+/* ↑↑↑ ***** reset ***** ↑↑↑ */
+
+/* ↓↓↓ ***** root ***** ↓↓↓ */
+@import "generate/base/root";
+/* ↑↑↑ ***** root ***** ↑↑↑ */
+
+/* ↓↓↓ ***** font ***** ↓↓↓ */
+@import "generate/base/font";
+/* ↑↑↑ ***** font ***** ↑↑↑ */
+
+/* ↓↓↓ ***** common ***** ↓↓↓ */
+@import "generate/base/common";
+/* ↑↑↑ ***** common ***** ↑↑↑ */
+
+/* ↓↓↓ ***** components ***** ↓↓↓ */
+@import "generate/components/tw_btn";
+/* ↑↑↑ ***** components ***** ↑↑↑ */
+
+
+
+// @import "frontend/layout/body_wrapper";
+@import "frontend/layout/page_main";
+// @import "frontend/layout/site_header";
+@import "frontend/layout/container";
+// // @import "frontend/page_header";
+// @import "frontend/component_list";
+// @import "frontend/code_view";
+@import "frontend/entry/data-row";
+@import "frontend/entry/details_page";

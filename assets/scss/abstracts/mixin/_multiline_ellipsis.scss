@@ -1,0 +1,30 @@
+@mixin multiline_ellipsis($line, $lineHeight) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+    /* 顯示行數 Chrome&Safari */
+    max-height: calc((1rem * #{$lineHeight} * #{$line}));
+    /* 顯示高度 IE&Firefox */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+
+    &:after {
+        content: "...";
+        text-align: right;
+        bottom: 0;
+        right: 0;
+        width: 25%;
+        display: block;
+        position: absolute;
+        height: calc(1rem * #{$lineHeight});
+        background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 75%);
+    }
+
+    @supports (-webkit-line-clamp: $line) {
+        &:after {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@mixin wh($width: 100%, $height: $width) {
+    @if type-of($width) == number {
+        @if (unitless($width)) {
+            $width: $width * 1px;
+        }
+        @if (unitless($height)) {
+            $height: $height * 1px;
+        }
+        width: $width;
+        height: $height;
+    } @else if $width == "auto" {
+        width: $width;
+        height: $height;
+    }
+}

@@ -1,0 +1,19 @@
+@function set-vw($num, $base-width) {
+    @return #{math.div($num, $base-width) * 100}vw;
+}
+
+@function set-vw-375($num) {
+    @return #{math.div($num, 375) * 100}vw;
+}
+
+@function set-vw-without-unit($num, $base-width) {
+    @return math.div($num * 100, $base-width); // 返回的是一个无单位的数，表示vw的数值
+}
+
+@function relative-percentage($num, $base-width) {
+    @return math.div($num, $base-width) * 100%;
+}
+
+@function min-set-vw($num, $base-width) {
+    @return min(set-vw($num, $base-width), #{$num}px);
+}

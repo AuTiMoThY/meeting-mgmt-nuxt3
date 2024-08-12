@@ -1,0 +1,49 @@
+html,
+body {
+    // font-size: 14px;
+}
+body {
+    // background-color: #156a4d;
+    // color: var(--Gray-02);
+}
+img {
+    width: 100%;
+    height: auto;
+}
+
+.page_section {
+    padding-top: var(--spacing-half);
+    padding-bottom: var(--spacing-half);
+}
+
+.page_head {
+    padding-top: var(--spacing);
+    padding-bottom: var(--spacing-half);
+}
+
+a {
+    color: currentColor;
+    transition: all 0.3s ease-in-out;
+}
+
+span.icon {
+    display: flex;
+}
+
+.show-1366-down {
+    display: none;
+    @include media-down(1366) {
+        display: block;
+    }
+}
+
+.input-controll {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    border: none;
+}
+
+.flex-row {
+    display: flex;
+}

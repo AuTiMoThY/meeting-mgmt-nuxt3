@@ -1,0 +1,9 @@
+@mixin psudoClass($display: null) {
+    @if is-dib($display) {
+        content: "";
+        display: inline-block;
+    } @else {
+        content: "";
+        display: block;
+    }
+}

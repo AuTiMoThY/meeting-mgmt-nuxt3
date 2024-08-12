@@ -1,0 +1,30 @@
+// custom grid-breakpoints --------------------------
+$grid-breakpoints: (
+    xs: 375px,
+    sm: 576px,
+    md: 768px,
+    lg: 1024px,
+    xl: 1280px,
+    xxl: 1366px
+);
+$container-max-widths: (
+    xs-sm: 375 -
+        (
+            16 * 2
+        ) * 1px,
+    sm-md: 576 -
+        (
+            40 * 2
+        ) * 1px,
+    md-xl: 768 -
+        (
+            40 * 2
+        ) * 1px,
+    xl-up: 1280 -
+        (
+            104 * 2
+        ) * 1px
+);
+@debug $container-max-widths;
+$grid-columns: 12;
+$grid-gutter-width: 24px;

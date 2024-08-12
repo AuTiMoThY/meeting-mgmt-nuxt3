@@ -1,0 +1,27 @@
+@function responsive-clamp-new($max-size, $min-size, $max-width: 1920, $min-width: 375) {
+    // 計算斜率
+    $slope: math.div(($max-size - $min-size), ($max-width - $min-width));
+    // 計算切入點
+    $intersection: $min-size - $slope * $min-width;
+
+    @return clamp(#{$min-size}px, #{$intersection}px + #{$slope * 100}vw, #{$max-size}px);
+}
+@function responsive-clamp($size-large, $size-small, $viewport-large: 1920, $viewport-small: 375, $px-or-rem: "rem") {
+    // 视口宽度变化范围
+    // $viewport-large: 1920; // 宽屏
+    // $viewport-small: 375; // 窄屏
+
+    // 计算线性方程参数
+    $slope: math.div(($size-large - $size-small), ($viewport-large - $viewport-small));
+    $base: $size-large - $slope * $viewport-large;
+
+    @if $px-or-rem == "px" {
+        @return clamp(#{$size-small}px, unquote("calc(#{$slope * 100vw} + #{$base}px)"), #{$size-large}px);
+    } @else {
+        @return clamp(
+            #{math.div($size-small, 16)}rem,
+            unquote("calc(#{$slope * 100vw} + #{math.div($base, 16)}rem)"),
+            #{math.div($size-large, 16)}rem
+        );
+    }
+}

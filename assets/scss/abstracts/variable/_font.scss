@@ -1,0 +1,87 @@
+$font: (
+    "title-large": (
+        "fz": px-to-rem(32),
+        "fw": 700,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "title-regular": (
+        "fz": px-to-rem(24),
+        "fw": 700,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "title-small": (
+        "fz": px-to-rem(20),
+        "fw": 700,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "title-exsmall": (
+        "fz": px-to-rem(16),
+        "fw": 700,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "body-large": (
+        "fz": px-to-rem(20),
+        "fw": 600,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "body-regular": (
+        "fz": px-to-rem(16),
+        "fw": 600,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+    "body-small": (
+        "fz": px-to-rem(14),
+        "fw": 600,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.7
+    ),
+    "label-regular": (
+        "fz": px-to-rem(12),
+        "fw": 600,
+        "ls": calc(0.04 * 1em),
+        "lh": 1.5
+    ),
+
+    "h1": (
+        "fz": px-to-rem(24),
+        "fw": 700,
+        "ls": "2.4px",
+        "lh": "normal"
+    ),
+    "h2": (
+        "fz": px-to-rem(20),
+        "fw": 500,
+        "ls": "2px",
+        "lh": "normal"
+    ),
+    "h3": (
+        "fz": px-to-rem(16),
+        "fw": 500,
+        "ls": "1.6px",
+        "lh": "normal"
+    ),
+    "note": (
+        "fz": px-to-rem(12),
+        "fw": 400,
+        "ls": "1.2px",
+        "lh": "normal"
+    ),
+    "body-m": (
+        "fz": px-to-rem(16),
+        "fw": 400,
+        "ls": "1.6px",
+        "lh": "160%"
+    ),
+    "body-s": (
+        "fz": px-to-rem(14),
+        "fw": 400,
+        "ls": "1.4px",
+        "lh": "160%"
+    )
+);

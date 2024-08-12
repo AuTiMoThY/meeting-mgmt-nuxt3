@@ -1,0 +1,23 @@
+@mixin hover_underline($color) {
+    position: relative;
+    &:after {
+        @include psudoClass;
+        @include absolute($B: -3px, $L: 0, $R: 0);
+        @include wh(100%, 1);
+        color: $color;
+        background-color: $color;
+        transform: scaleX(0);
+        opacity: 0;
+        // @include bg(rgba($color, 0));
+        margin: auto;
+        transition: all 0.3s $easeInOutCubic;
+    }
+    &:hover {
+        &:after {
+            width: 100%;
+            transform: scaleX(1);
+            opacity: 1;
+            // @include bg(rgba($color, 1));
+        }
+    }
+}

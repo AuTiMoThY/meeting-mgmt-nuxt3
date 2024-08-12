@@ -1,0 +1,11 @@
+.gotop {
+    @include fixed($R: set-vw(16, 1920));
+    bottom: calc((var(--wapfootermenuitem-height)) * 1px + (set-vw(30, 1920) + set-vw(20, 1920) + set-vw(20, 1920)));
+    z-index: 98;
+    width: set-vw(116, 1920);
+    height: set-vw(116, 1920);
+    border-radius: 50%;
+
+    @extend %btn-active-effect;
+    @extend %btn-hover-effect;
+}
