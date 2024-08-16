@@ -1,37 +1,8 @@
-@font-face {
-    font-family: "Inter";
-    src: url("~/assets/fonts/inter/static/Inter-Regular.ttf") format("opentype");
-    font-weight: 400;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("~/assets/fonts/inter/static/Inter-Medium.ttf") format("opentype");
-    font-weight: 500;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("~/assets/fonts/inter/static/Inter-SemiBold.ttf") format("opentype");
-    font-weight: 600;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("~/assets/fonts/inter/static/Inter-Bold.ttf") format("opentype");
-    font-weight: 700;
-}
-
-@font-face {
-    font-family: "Inter";
-    src: url("~/assets/fonts/inter/static/Inter-Black.ttf") format("opentype");
-    font-weight: 900;
-}
 
 body {
-    font-family: "Inter", sans-serif;
-    font-display: swap;
-    font-weight: 600;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
     line-height: 1.5;
 }
 

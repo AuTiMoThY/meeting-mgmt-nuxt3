@@ -6,11 +6,11 @@ defineProps({
 </script>
 
 <template>
-    <span class="tw_spcing" :style="'--w: ' + w + '; --h: ' + h"></span>
+    <span class="au_spcing" :style="'--w: ' + w + '; --h: ' + h"></span>
 </template>
 
 <style lang="scss">
-.tw_spcing {
+.au_spcing {
     display: block;
     width: 100%;
     aspect-ratio: var(--w) / var(--h);

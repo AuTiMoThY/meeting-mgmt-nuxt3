@@ -5,14 +5,25 @@ export default defineNuxtConfig({
     compatibilityDate: "2024-08-02",
     devtools: { enabled: true },
     devServer: {
-        port: 8081
+        port: 8090
     },
-    modules: ["@pinia/nuxt"],
+    modules: ["@pinia/nuxt", "@nuxtjs/google-fonts"],
+    googleFonts: {
+        families: {
+            "Noto+Sans+TC": "100..900"
+        },
+        display: "swap"
+    },
     app: {
         baseURL: basePath,
         // buildAssetsDir: "/assets/"
         head: {
-            link: [],
+            link: [
+                {
+                    rel: "stylesheet",
+                    href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+                }
+            ],
             style: [],
             script: [
                 // {

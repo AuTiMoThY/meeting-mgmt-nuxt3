@@ -28,17 +28,13 @@
 /* ↑↑↑ ***** common ***** ↑↑↑ */
 
 /* ↓↓↓ ***** components ***** ↓↓↓ */
-@import "generate/components/tw_btn";
+@import "~/components/AuImg/AuImg";
+@import "~/components/AuBtn/AuBtn";
+@import "~/components/FrmField/FrmBase";
+@import "~/components/FrmField/FrmField";
+// @import "generate/components/_AuImg";
+// @import "generate/components/_FrmBase";
+// @import "generate/components/_FrmField";
+// @import "generate/components/tw_btn";
 /* ↑↑↑ ***** components ***** ↑↑↑ */
 
-
-
-// @import "frontend/layout/body_wrapper";
-@import "frontend/layout/page_main";
-// @import "frontend/layout/site_header";
-@import "frontend/layout/container";
-// // @import "frontend/page_header";
-// @import "frontend/component_list";
-// @import "frontend/code_view";
-@import "frontend/entry/data-row";
-@import "frontend/entry/details_page";

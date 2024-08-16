@@ -11,7 +11,7 @@ $boxShadowActive1:
 $boxShadow-weak: 0px 3px 3px rgba(#454c54, 0.2);
 
 $dropShadow: (
-    "window": 0px 16px 48px #{rgba(color("theme-color"), 0.1)},
-    "dropdown": 0px 16px 16px #{rgba(color("theme-color"), 0.3)},
-    "sidebar": 0px 0px 8px #{rgba(color("theme-color"), 0.3)}
+    "window": 0px 16px 48px #{rgba(color("primary-color"), 0.1)},
+    "dropdown": 0px 16px 16px #{rgba(color("primary-color"), 0.3)},
+    "sidebar": 0px 0px 8px #{rgba(color("primary-color"), 0.3)}
 );

@@ -1,0 +1,130 @@
+$txt-color: $primary;
+$txt-hover-color: #fff;
+$bg-color: #fff;
+$bg-hover-color: $primary;
+$bd-color: color("gray-1");
+$bd-hover-color: $primary;
+
+.au_btn {
+    --txt-color: #{$primary};
+    --txt-hover-color: #{$txt-hover-color};
+    --bg-color: #{$bg-color};
+    --bg-hover-color: #{$bg-hover-color};
+    --bd-color: #{$bd-color};
+    --bd-hover-color: #{$bd-hover-color};
+    --bdra: #{$border-radius-base};
+    position: relative;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+
+    min-width: 100px;
+    height: auto;
+    color: var(--txt-color);
+
+    &-txt {
+        color: currentColor;
+        font-size: px-to-rem(16);
+        font-weight: 700;
+    }
+
+    &-inner {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        padding: 0.5rem 1.5rem;
+
+        transition:
+            border 0.3s $easeInOutCubic3,
+            box-shadow 0.3s $easeInOutCubic3,
+            background-color 0.3s $easeInOutCubic3;
+
+        &::before {
+            @include psudoClass;
+            @include absolute(0, $L: 0);
+            @include wh;
+            background-color: transparent;
+            box-shadow: 0px 0px 16px var(--bg-hover-color);
+            transition:
+                opacity 0.3s $easeInOutCubic3,
+                box-shadow 0.3s $easeInOutCubic3;
+            opacity: 0;
+        }
+    }
+    
+    &:has(.au_btn-bg) {
+        .au_btn-inner {
+            @include aspectRatioBox(149, 74);
+        }
+    }
+
+    &:not(:has(.au_btn-bg)) {
+        .au_btn-inner {
+            border-radius: var(--bdra);
+            border: 1px solid var(--bd-color);
+        }
+    }
+
+    &-bg {
+        @include absolute(0, $L: 0);
+        z-index: 1;
+        // @include aspectRatioBox(149, 74);
+        border-radius: $border-radius-base;
+        overflow: hidden;
+    }
+
+    &-icon {
+        position: relative;
+        z-index: 2;
+        &.icon-prepend,
+        &.icon-append {
+            width: 1.5rem;
+        }
+
+        &.icon-top {
+            width: 2.5rem;
+        }
+    }
+
+    &-center {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    &::before,
+    &::after {
+        border-radius: var(--bdra);
+    }
+
+    @include element-effect(true, true) {
+        color: var(--txt-hover-color);
+
+
+        &-bg img {
+            transform: scale(1.05);
+        }
+
+        &:has(.au_btn-bg) {
+            .au_btn-inner {
+                &::before {
+                    opacity: 0.3;
+                }
+            }
+        }
+
+        &:not(:has(.au_btn-bg)) {
+            .au_btn-inner {
+                border: 1px solid var(--bd-hover-color);
+                background-color: var(--bg-hover-color);
+                box-shadow: 0px 0px 16px #{rgba(var(--bg-hover-color), 0.3)};
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+.page-login {
+    display: grid;
+    grid-template-columns: minmax(480px, relative-percentage(480, 1440)) 1fr;
+
+    width: 100%;
+    height: 100vh;
+
+    .brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: var(--primary-color);
+    }
+
+    .title {
+
+        color: #fff;
+        letter-spacing: 5px;
+        font-size: 3rem;
+        writing-mode: vertical-lr;
+    }
+
+    .login_wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login_block {
+        display: flex;
+        flex-direction: column;
+        // gap: var(--spacing-4x);
+        padding: var(--spacing-4x);
+    
+        width: 480px;
+    
+        border-radius: $border-radius-base;
+        box-shadow: map-get($dropShadow, 'window');
+    
+    }
+}
