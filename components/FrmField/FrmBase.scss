@@ -37,5 +37,9 @@ input[type="number"] {
 }
 
 .frm-row {
-
+    &-btn {
+        display: flex;
+        justify-content: center;
+        padding-top: 1rem;
+    }
 }

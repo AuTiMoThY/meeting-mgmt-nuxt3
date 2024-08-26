@@ -9,7 +9,7 @@
 }
 
 :root {
-    @each $multiple in (1, 2, 4, 8, 16) {
+    @each $multiple in (1, 2, 3, 4, 5, 8, 16) {
         --spacing-#{$multiple}x: #{8px * $multiple};
     }
 }

@@ -10,9 +10,5 @@ defineProps({
 </template>
 
 <style lang="scss">
-.au_spcing {
-    display: block;
-    width: 100%;
-    aspect-ratio: var(--w) / var(--h);
-}
+// 元件style由 main.scss 載入
 </style>

@@ -1,11 +1,18 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
 import PasswordField from "~/components/FrmField/PasswordField.vue";
+import { useAuthStore } from "~/stores/useAuthStore";
+const authStore = useAuthStore();
+const router = useRouter();
+
+definePageMeta({
+    layout: "simple"
+});
 
 const userId = ref("");
 const userPw = ref("");
 const handleLogin = async () => {
-    if (username.value === "admin" && password.value === "password") {
+    if (userId.value === "qq" && userPw.value === "aa") {
         await authStore.login(); // 更新登入狀態
         router.push("/"); // 登入成功後導向dashboard
     } else {
@@ -14,7 +21,7 @@ const handleLogin = async () => {
 };
 
 const handleLoginClicked = () => {
-    console.log(userId.value);
+    handleLogin();
 };
 </script>
 <template>
@@ -41,7 +48,7 @@ const handleLoginClicked = () => {
                             label="密碼"
                             placeholder="請輸入密碼"></PasswordField>
                     </div>
-                    <div class="frm-row">
+                    <div class="frm-row frm-row-btn">
                         <AuBtn
                             class="au_btn-effecy"
                             txt="登入"

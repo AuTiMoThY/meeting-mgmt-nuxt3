@@ -5,6 +5,7 @@ body {
 body {
     // background-color: #156a4d;
     color: var(--gray-6);
+    @include font_setting("body");
 }
 img {
     width: 100%;
