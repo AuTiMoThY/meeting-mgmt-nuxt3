@@ -1,6 +1,12 @@
 .page_main {
     container-type: inline-size;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-top: 56px;
+    padding-bottom: 56px;
     // background-image: url("@/assets/images/bg.jpg");
+
+    &-body {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-5x);
+    }
 }

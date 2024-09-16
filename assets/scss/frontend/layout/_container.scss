@@ -1,4 +1,6 @@
 .container {
-    width: min(100%, 1200px);
-    margin: auto;
+    // width: min(100%, 1200px);
+    // margin: auto;
+    padding-left: min-set-vw(56, 1440);
+    padding-right: min-set-vw(56, 1440);
 }

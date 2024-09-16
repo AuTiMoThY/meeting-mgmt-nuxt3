@@ -1,6 +1,6 @@
 .body_wrapper {
     display: grid;
-    grid-template-columns: 332px 1fr;
+    grid-template-columns: clamp(280px, #{set-vw(332, 1440)}, 332px) 1fr;
     grid-template-areas: "aside main";
 
     @include media-down(768) {
