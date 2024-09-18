@@ -1,7 +1,10 @@
 .page_main {
     container-type: inline-size;
-    padding-top: 56px;
-    padding-bottom: 56px;
+
+    &:not(.page-login) {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
     // background-image: url("@/assets/images/bg.jpg");
 
     &-body {

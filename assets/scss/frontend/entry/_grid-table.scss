@@ -18,6 +18,13 @@
 
     transition: all 0.3s ease-in-out;
 
+    .grid-cell {
+        &.operate {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
     .today_meeting__datatable & {
         grid-template-columns: 120px 1fr 40px 100px;
         .grid-cell {
@@ -28,6 +35,11 @@
                 text-align: right;
             }
         }
+    }
+
+    .abnormal_equipment__datatable & {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 62px;
+
     }
 
     &:hover {
@@ -46,6 +58,11 @@
     &[class*='-data'] {
 
         
+    }
+
+    .icon-operate {
+        width: 24px;
+        cursor: pointer;
     }
 }
 

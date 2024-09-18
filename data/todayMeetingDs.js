@@ -1,11 +1,11 @@
 export const todayMeetingDs = {
-    tableColumns: [
-        { name: "time", field: "time", align: "left", label: "時間" },
-        { name: "name", field: "name", align: "left", label: "會議" },
-        { name: "people", field: "people", align: "left", label: "人數" },
-        { name: "room", field: "room", align: "left", label: "會議室" }
+    columns: [
+        { name: "time", field: "time", label: "時間" },
+        { name: "name", field: "name", label: "會議" },
+        { name: "people", field: "people", label: "人數" },
+        { name: "room", field: "room", label: "會議室" }
     ],
-    tableData: [
+    data: [
         {
             time: "09:00 - 10:00",
             name: "業務小組晨會",
