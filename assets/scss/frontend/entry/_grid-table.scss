@@ -25,22 +25,22 @@
         }
     }
 
-    .today_meeting__datatable & {
-        grid-template-columns: 120px 1fr 40px 100px;
-        .grid-cell {
-            &.people {
-                text-align: right;
-            }
-            &.room {
-                text-align: right;
-            }
-        }
-    }
+    // .today_meeting__datatable & {
+    //     grid-template-columns: 120px 1fr 40px 100px;
+    //     .grid-cell {
+    //         &.people {
+    //             text-align: right;
+    //         }
+    //         &.room {
+    //             text-align: right;
+    //         }
+    //     }
+    // }
 
-    .abnormal_equipment__datatable & {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 62px;
+    // .abnormal_equipment__datatable & {
+    //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 62px;
 
-    }
+    // }
 
     &:hover {
         // background-color: var(--gray-05);
@@ -60,10 +60,7 @@
         
     }
 
-    .icon-operate {
-        width: 24px;
-        cursor: pointer;
-    }
+
 }
 
 // .grid-cell {
