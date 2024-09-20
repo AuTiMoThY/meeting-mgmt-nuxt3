@@ -5,6 +5,12 @@ $font: (
         "ls": "1px",
         "lh": "normal"
     ),
+    "heading-title": (
+        "fz": px-to-rem(28),
+        "fw": 700,
+        "ls": normal,
+        "lh": normal
+    ),
     "body": (
         "fz": px-to-rem(16),
         "fw": 400,

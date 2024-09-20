@@ -6,7 +6,7 @@ defineProps({
 const slots = useSlots();
 </script>
 <template>
-    <div class="au_btn au_btn-base">
+    <div class="au_btn">
         <div class="au_btn-inner">
             <div v-if="slots['bg']" class="au_btn-bg">
                 <slot name="bg"></slot>
