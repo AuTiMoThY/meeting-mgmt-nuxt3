@@ -15,6 +15,7 @@ const props = defineProps({
         required: true
     }
 });
+const emit = defineEmits(["operation"]);
 const { columns, data } = toRefs(props);
 
 const getCellComponent = (columnName) => {
@@ -30,6 +31,11 @@ const getCellComponent = (columnName) => {
         default:
             return TextCell;
     }
+};
+
+const handleOperationEmit = (operation, rowData) => {
+    console.log("MeetingDateTable: Received operation", operation, rowData);
+    emit("operation", operation, rowData);
 };
 </script>
 <template>
@@ -50,7 +56,11 @@ const getCellComponent = (columnName) => {
                 class="au_datatable-td grid-cell"
                 :class="columns[c_index].name"
                 :data-th="columns[c_index].label">
-                <component :is="getCellComponent(col.name)" :row="row" :col="col"></component>
+                <component
+                    :is="getCellComponent(col.name)"
+                    :row="row"
+                    :col="col"
+                    @operation="handleOperationEmit"></component>
             </div>
         </div>
     </div>

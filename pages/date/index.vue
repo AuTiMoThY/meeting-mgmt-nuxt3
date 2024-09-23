@@ -8,6 +8,22 @@ const config = useRuntimeConfig();
 const imgPath = config.public.imgPath;
 
 const searchKeyword = ref("");
+
+const handleOperation = (operation, rowData) => {
+    console.log("Main Program: Received operation", operation, rowData);
+    // 根據操作類型和行數據執行相應的邏輯
+    switch (operation) {
+        case "view":
+            console.log("Viewing: ", rowData);
+            break;
+        case "edit":
+            console.log("Editing: ", rowData);
+            break;
+        case "delete":
+            console.log("Deleting: ", rowData);
+            break;
+    }
+};
 </script>
 <template>
     <main class="page_main page-date">
@@ -53,7 +69,8 @@ const searchKeyword = ref("");
                     <template #bd>
                         <MeetingDateTable
                             :columns="meetingDate.columns"
-                            :data="meetingDate.data"></MeetingDateTable>
+                            :data="meetingDate.data"
+                            @operation="handleOperation"></MeetingDateTable>
                     </template>
                 </AuPanel>
             </div>

@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-    txt: String
+    txt: [String, Number]
 });
 
 const slots = useSlots();
