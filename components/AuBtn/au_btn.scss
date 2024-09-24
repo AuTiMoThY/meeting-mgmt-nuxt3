@@ -132,4 +132,15 @@ $hover-shadow: -1px -1px 2px rgba($primary, 0.1), 1px 1px 2px rgba($primary, 0.1
             }
         }
     }
+
+    &.active {
+        color: var(--txt-hover-color);
+        &:not(:has(.au_btn-bg)) {
+            .au_btn-inner {
+                border: 1px solid var(--bd-hover-color);
+                background-color: var(--bg-hover-color);
+                box-shadow: var(--hover-shadow);
+            }
+        }
+    }
 }

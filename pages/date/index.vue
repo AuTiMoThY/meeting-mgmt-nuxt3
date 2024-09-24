@@ -4,10 +4,8 @@ import InputField from "~/components/FrmField/InputField.vue";
 import { meetingDateDs } from "~/data/meetingDateDs";
 const meetingDate = ref(meetingDateDs);
 
-const config = useRuntimeConfig();
-const imgPath = config.public.imgPath;
-
 const searchKeyword = ref("");
+const currentPage = ref(1);
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -76,7 +74,7 @@ const handleOperation = (operation, rowData) => {
             </div>
 
             <div class="page_main-ft">
-                <AuPagination :total-page="5"></AuPagination>
+                <AuPagination :total-page="5" :current-page="currentPage"></AuPagination>
             </div>
         </div>
     </main>

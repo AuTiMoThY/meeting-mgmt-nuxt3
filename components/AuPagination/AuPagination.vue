@@ -5,6 +5,10 @@ const props = defineProps({
     totalPage: {
         type: Number,
         required: true
+    },
+    currentPage: {
+        type: Number,
+        required: true
     }
 });
 const { totalPage } = toRefs(props);
@@ -21,7 +25,8 @@ const { totalPage } = toRefs(props);
                 v-for="i in totalPage"
                 :key="i"
                 :txt="i"
-                class="au_pagination-ctrl au_pagination-number">
+                class="au_pagination-ctrl au_pagination-number"
+                :class="{ active: i === currentPage }">
             </AuBtn>
         </div>
         <AuBtn class="au_pagination-ctrl au_pagination-next">
