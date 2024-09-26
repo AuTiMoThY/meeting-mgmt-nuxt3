@@ -1,7 +1,8 @@
 <script setup>
+import { useRoute } from "vue-router";
+const route = useRoute();
 const config = useRuntimeConfig();
 const imgPath = config.public.imgPath;
-
 const props = defineProps({
     isOpen: {
         type: Boolean,
@@ -16,12 +17,14 @@ const navData = [
             {
                 title: "會議管理",
                 icon: `${imgPath}icons/date.svg`,
-                link: "/date"
+                link: "/date",
+                name: "date"
             },
             {
                 title: "會議室管理",
                 icon: `${imgPath}icons/room.svg`,
-                link: "/room"
+                link: "/room",
+                name: "room"
             }
         ]
     },
@@ -31,12 +34,14 @@ const navData = [
             {
                 title: "設備管理",
                 icon: `${imgPath}icons/device.svg`,
-                link: "/device"
+                link: "/device",
+                name: "device"
             },
             {
                 title: "內容管理",
                 icon: `${imgPath}icons/content.svg`,
-                link: "/content"
+                link: "/content",
+                name: "content"
             }
         ]
     },
@@ -46,11 +51,16 @@ const navData = [
             {
                 title: "人員管理",
                 icon: `${imgPath}icons/people.svg`,
-                link: "/people"
+                link: "/people",
+                name: "people"
             }
         ]
     }
 ];
+
+const isCurrentRoute = (itemLink) => {
+    return route.path === itemLink;
+};
 </script>
 <template>
     <aside class="site_aside" :class="{ 'js-open': isOpen }">
@@ -67,6 +77,7 @@ const navData = [
                         <ul class="site_nav-list">
                             <li
                                 class="site_nav-item"
+                                :class="{ 'is-active': isCurrentRoute(item.link) }"
                                 v-for="(item, index) in group.list"
                                 :key="index">
                                 <NuxtLink :to="item.link" class="site_nav-link">

@@ -2,10 +2,15 @@
 const props = defineProps({
     label: String,
     rcxId: String,
-    modelValue: [String, Number, Array]
+    modelValue: Boolean
 });
 
-const value = ref(props.modelValue);
+const emit = defineEmits(["update:modelValue"]);
+
+const value = computed({
+    get: () => props.modelValue,
+    set: (newValue) => emit("update:modelValue", newValue)
+});
 </script>
 <template>
     <div class="frm_rcx">

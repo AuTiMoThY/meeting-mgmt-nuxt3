@@ -1,8 +1,17 @@
 <script setup>
 import { todayMeetingDs } from "~/data/todayMeetingDs";
-import { abnormalEquipmentDs } from "~/data/abnormalEquipmentDs";
+import { deviceDs } from "~/data/deviceDs";
 const todayMeeting = ref(todayMeetingDs);
-const abnormalEquipment = ref(abnormalEquipmentDs);
+
+// 新增計算屬性來篩選異常設備
+const abnormalEquipment = computed(() => {
+    return {
+        columns: deviceDs.columns,
+        data: deviceDs.data.filter(
+            (device) => device.power <= 20 || device.bluetooth === 0 || device.wifi === 0
+        )
+    };
+});
 
 definePageMeta({
     middleware: "auth"
@@ -14,7 +23,7 @@ onUnmounted(() => {});
 <template>
     <main class="page_main page-home">
         <div class="container">
-            <div class="page_main-body">
+            <div class="page_main-bd">
                 <AuPanel class="today_meeting">
                     <template #hd>
                         <div class="title">今日會議</div>

@@ -1,4 +1,4 @@
-export const abnormalEquipmentDs = {
+export const deviceDs = {
     columns: [
         { name: "name", field: "name", label: "設備名稱" },
         { name: "type", field: "type", label: "設備類型" },
@@ -33,7 +33,7 @@ export const abnormalEquipmentDs = {
             name: "設備名稱D",
             type: "迎賓牌",
             power: 25,
-            bluetooth: 0,
+            bluetooth: 1,
             wifi: 1
         },
         {
@@ -47,7 +47,7 @@ export const abnormalEquipmentDs = {
             name: "設備名稱F",
             type: "門牌",
             power: 100,
-            bluetooth: 0,
+            bluetooth: 1,
             wifi: 1
         },
         {
@@ -61,7 +61,7 @@ export const abnormalEquipmentDs = {
             name: "設備名稱H",
             type: "桌牌",
             power: 75,
-            bluetooth: 0,
+            bluetooth: 1,
             wifi: 1
         },
         {

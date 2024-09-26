@@ -2,6 +2,37 @@
 import InputField from "~/components/FrmField/InputField.vue";
 import RcxField from "~/components/FrmField/RcxField.vue";
 // import { imgPath } from "~/utils/config.js";
+
+import { roomDs } from "~/data/roomDs";
+const room = ref(roomDs);
+console.log(room.value);
+
+const searchKeyword = ref("");
+const currentPage = ref(1);
+const isShowIdle = ref(false);
+
+const handleOperation = (operation, rowData) => {
+    console.log("Main Program: Received operation", operation, rowData);
+    // 根據操作類型和行數據執行相應的邏輯
+    switch (operation) {
+        case "view":
+            console.log("Viewing: ", rowData);
+            break;
+        case "edit":
+            console.log("Editing: ", rowData);
+            break;
+        case "delete":
+            console.log("Deleting: ", rowData);
+            break;
+    }
+};
+
+const filteredRoomData = computed(() => {
+    if (isShowIdle.value) {
+        return room.value.data.filter((item) => item.status === 0);
+    }
+    return room.value.data;
+});
 </script>
 <template>
     <main class="page_main page-date">
@@ -22,7 +53,10 @@ import RcxField from "~/components/FrmField/RcxField.vue";
             <div class="page_main-bd">
                 <div class="conditional-bar">
                     <div class="conditional-bar-filter">
-                        <RcxField label="僅顯示閒置會議室" rcx-id="isOnlyIdle"></RcxField>
+                        <RcxField
+                            label="僅顯示閒置會議室"
+                            rcx-id="checkboxOnlyIdle"
+                            v-model="isShowIdle"></RcxField>
                     </div>
                     <div class="conditional-bar-search">
                         <div class="search-field">
@@ -41,7 +75,12 @@ import RcxField from "~/components/FrmField/RcxField.vue";
                     </div>
                 </div>
                 <AuPanel class="meeting_date">
-                    <template #bd> </template>
+                    <template #bd>
+                        <RoomTable
+                            :columns="room.columns"
+                            :data="filteredRoomData"
+                            @operation="handleOperation"></RoomTable>
+                    </template>
                 </AuPanel>
             </div>
 

@@ -80,7 +80,8 @@
 
         border-radius: 4px;
 
-        &:hover {
+        &:hover,
+        &.router-link-active {
             background: var(--gray-00, #fff);
             /* shadow/btn */
             box-shadow:
@@ -90,6 +91,18 @@
             color: var(--primary-color);
         }
     }
+
+    // &-item {
+    //     &.is-active {
+    //         background: var(--gray-00, #fff);
+    //         /* shadow/btn */
+    //         box-shadow:
+    //             -1px -1px 2px 0px rgba(0, 95, 180, 0.1) inset,
+    //             1px 1px 2px 0px rgba(0, 95, 180, 0.1),
+    //             2px 2px 8px 0px rgba(0, 95, 180, 0.1);
+    //         color: var(--primary-color);
+    //     }
+    // }
 }
 
 .account-connect {
