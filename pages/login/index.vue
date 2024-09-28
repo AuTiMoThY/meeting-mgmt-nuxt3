@@ -15,6 +15,7 @@ const handleLogin = async () => {
 
 const handleLoginClicked = () => {
     console.log(userId.value);
+    handleLogin();
 };
 </script>
 <template>
@@ -41,7 +42,7 @@ const handleLoginClicked = () => {
                             label="密碼"
                             placeholder="請輸入密碼"></PasswordField>
                     </div>
-                    <div class="frm-row">
+                    <div class="frm-row frm-row-btn">
                         <AuBtn
                             class="au_btn-effecy"
                             txt="登入"
