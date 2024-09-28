@@ -1,5 +1,28 @@
 .body_wrapper {
-    padding-top: var(--site-header-height);
-    // background-color: var(--background-color);
-    // background-image: url("~/assets/bg_pattern_tile.png");
+    display: grid;
+    grid-template-columns: clamp(280px, #{set-vw(332, 1440)}, 332px) 1fr;
+    grid-template-areas: "aside main";
+
+    @include media-down(768) {
+        display: block;
+        padding-top: var(--header-height);
+
+        .menu-mask {
+            position: fixed;
+            z-index: 9;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+}
+
+.site_aside {
+    position: relative;
+    z-index: 10;
+    grid-area: aside;
+}
+
+.page_main {
+    grid-area: main;
 }

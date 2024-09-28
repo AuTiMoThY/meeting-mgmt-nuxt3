@@ -1,0 +1,37 @@
+.conditional-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &-filter {
+        display: flex;
+        gap: var(--spacing-2x);
+    }
+
+    &-search {
+    }
+}
+
+.search-field {
+    position: relative;
+    border-bottom: 1px solid var(--gray-1);
+
+    .search-btn {
+        --w: 24;
+        --h: 24;
+        @include absolute(50%, 0px);
+        transform: translateY(-50%);
+        min-width: 0;
+
+        .au_btn-inner {
+            width: 40px;
+            padding: 8px;
+            border-radius: $border-radius-base;
+
+            padding: 0;
+            @include element-effect(true, true) {
+                background-color: var(--gray-1);
+            }
+        }
+    }
+}

@@ -1,13 +1,12 @@
 <script setup>
 defineProps({
-    txt: String
+    txt: [String, Number]
 });
 
 const slots = useSlots();
 </script>
 <template>
-    <button class="au_btn au_btn-base">
-        <!-- <slot v-if="!txt"></slot> -->
+    <div class="au_btn">
         <div class="au_btn-inner">
             <div v-if="slots['bg']" class="au_btn-bg">
                 <slot name="bg"></slot>
@@ -25,7 +24,7 @@ const slots = useSlots();
                 <slot name="icon-append"></slot>
             </div>
         </div>
-    </button>
+    </div>
 </template>
 <style lang="scss">
 // 元件style由 main.scss 載入

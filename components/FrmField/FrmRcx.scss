@@ -1,0 +1,45 @@
+.frm_rcx {
+    &-label {
+        cursor: pointer;
+    }
+    &-input {
+        display: none;
+        &:checked {
+            ~ .frm_rcx-inner {
+                .choicemark {
+                    border-color: var(--primary-color);
+                    background-color: var(--primary-color);
+                    &-check {
+                        // width: 100%;
+                        transform: scale(1);
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    &-inner {
+        display: flex;
+        gap: var(--spacing-1x);
+
+        .choicemark {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include wh(24);
+            border: 1px solid var(--gray-1);
+            border-radius: 4px;
+
+            transition: $transition-base;
+
+            &-check {
+                // width: 0;
+                transform: scale(0);
+                opacity: 0;
+                transition:
+                    opacity 0.3s ease-in-out,
+                    transform 0.3s 0.1s $easing3;
+            }
+        }
+    }
+}

@@ -1,0 +1,73 @@
+.grid-table {
+    width: 100%;
+    // border: 1px solid var(--gray-04);
+    // border-radius: $border-radius-base;
+
+    @include rwd-mobile {
+        border: none;
+        border-radius: 0;
+    }
+}
+
+
+.grid-tablerow {
+    display: grid;
+    gap: var(--spacing-2x);
+    align-items: center;
+    padding: var(--spacing-1x);
+
+    transition: all 0.3s ease-in-out;
+
+    .grid-cell {
+        &.operate {
+            display: flex;
+            justify-content: center;
+        }
+    }
+
+    // .today_meeting__datatable & {
+    //     grid-template-columns: 120px 1fr 40px 100px;
+    //     .grid-cell {
+    //         &.people {
+    //             text-align: right;
+    //         }
+    //         &.room {
+    //             text-align: right;
+    //         }
+    //     }
+    // }
+
+    // .abnormal_equipment__datatable & {
+    //     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 62px;
+
+    // }
+
+    &:hover {
+        // background-color: var(--gray-05);
+    }
+
+
+
+    &[class*='-heading'] {
+        background-color: var(--primary-0);
+        color: var(--gray-6);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    &[class*='-data'] {
+
+        
+    }
+
+
+}
+
+// .grid-cell {
+//     &.people {
+
+//     }
+//     &.room {
+//         text-align: right;
+//     }
+// }

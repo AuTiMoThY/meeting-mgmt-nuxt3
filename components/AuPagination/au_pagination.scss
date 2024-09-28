@@ -1,0 +1,35 @@
+.au_pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    &-pages {
+        display: flex;
+        gap: 16px;
+    }
+
+    &-ctrl {
+        flex: 0 0 40px;
+        min-width: 0;
+        @include wh(40);
+        cursor: pointer;
+
+        .au_btn-inner {
+            padding: 0;
+            height: 100%;
+        }
+
+        .au_btn-icon {
+            width: 24px;
+        }
+    }
+
+    &-next {
+        .au_btn-icon {
+            img {
+                transform: scaleX(-1);
+            }
+        }
+    }
+}

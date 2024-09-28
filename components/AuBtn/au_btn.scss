@@ -1,18 +1,20 @@
-$txt-color: $primary;
-$txt-hover-color: #fff;
+$txt-color: color('gray-6');
+$txt-hover-color: $primary;
 $bg-color: #fff;
-$bg-hover-color: $primary;
+$bg-hover-color: color('primary-0');
 $bd-color: color("gray-1");
-$bd-hover-color: $primary;
+$bd-hover-color: color('primary-1');
+$hover-shadow: -1px -1px 2px rgba($primary, 0.1), 1px 1px 2px rgba($primary, 0.1), 2px 2px 8px rgba($primary, 0.1);
 
 .au_btn {
-    --txt-color: #{$primary};
+    --txt-color: #{$txt-color};
     --txt-hover-color: #{$txt-hover-color};
     --bg-color: #{$bg-color};
     --bg-hover-color: #{$bg-hover-color};
     --bd-color: #{$bd-color};
     --bd-hover-color: #{$bd-hover-color};
     --bdra: #{$border-radius-base};
+    --hover-shadow: #{$hover-shadow};
     position: relative;
     padding: 0;
     border: none;
@@ -34,6 +36,8 @@ $bd-hover-color: $primary;
         align-items: center;
         justify-content: center;
         gap: 0.5rem;
+
+        width: 100%;
 
         padding: 0.5rem 1.5rem;
 
@@ -57,7 +61,7 @@ $bd-hover-color: $primary;
     
     &:has(.au_btn-bg) {
         .au_btn-inner {
-            @include aspectRatioBox(149, 74);
+            aspect-ratio: var(--w) / var(--h);
         }
     }
 
@@ -69,7 +73,8 @@ $bd-hover-color: $primary;
     }
 
     &-bg {
-        @include absolute(0, $L: 0);
+        @include absolute(50%, $L: 50%);
+        transform: translate(-50%, -50%);
         z-index: 1;
         // @include aspectRatioBox(149, 74);
         border-radius: $border-radius-base;
@@ -123,7 +128,18 @@ $bd-hover-color: $primary;
             .au_btn-inner {
                 border: 1px solid var(--bd-hover-color);
                 background-color: var(--bg-hover-color);
-                box-shadow: 0px 0px 16px #{rgba(var(--bg-hover-color), 0.3)};
+                box-shadow: var(--hover-shadow);
+            }
+        }
+    }
+
+    &.active {
+        color: var(--txt-hover-color);
+        &:not(:has(.au_btn-bg)) {
+            .au_btn-inner {
+                border: 1px solid var(--bd-hover-color);
+                background-color: var(--bg-hover-color);
+                box-shadow: var(--hover-shadow);
             }
         }
     }

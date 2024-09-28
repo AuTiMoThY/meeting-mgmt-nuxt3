@@ -1,6 +1,35 @@
 .page_main {
     container-type: inline-size;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-5x);
+    }
+
+    &:not(.page-login) {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
     // background-image: url("@/assets/images/bg.jpg");
+
+    &-hd {
+        display: flex;
+        justify-content: space-between;
+
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--primary-1);
+
+        .title {
+            // color: var(--gray-6);
+            @include font_setting("heading-title");
+        }
+    }
+
+    &-bd {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-5x);
+    }
 }

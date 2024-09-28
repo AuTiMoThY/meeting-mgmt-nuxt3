@@ -1,0 +1,70 @@
+.au_datatable {
+    .icon-operate {
+        width: 24px;
+        cursor: pointer;
+    }
+
+    .txt-red {
+        color: color("danger");
+    }
+
+    .txt-green {
+        color: color("success");
+    }
+
+    &-operate {
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        .operate_menu {
+            @include absolute(100%, $L: 50%);
+            transform: translateX(-50%);
+            z-index: 10;
+
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: max-content;
+
+            padding: 16px;
+            background-color: #fff;
+            border-radius: 8px;
+
+            box-shadow:
+                2px 2px 4px 0px rgba(0, 95, 180, 0.1),
+                4px 4px 16px 0px rgba(0, 95, 180, 0.1);
+
+            &-btn {
+                display: flex;
+                // flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+
+                .icon {
+                    flex: 0 0 24px;
+                }
+
+                .txt {
+                    flex: 0 0 auto;
+                    transition: $transition-base;
+                }
+
+                @include element-effect(true, true) {
+                    .icon {
+                        .default {
+                            opacity: 0;
+                        }
+                        .hover {
+                            opacity: 1;
+                        }
+                    }
+                    .txt {
+                        color: color("primary-color");
+                    }
+                }
+            }
+        }
+    }
+}
