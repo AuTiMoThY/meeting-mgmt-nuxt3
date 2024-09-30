@@ -1,6 +1,6 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
-import RcxField from "~/components/FrmField/RcxField.vue";
+import DropdownField from "~/components/FrmField/DropdownField.vue";
 // import { imgPath } from "~/utils/config.js";
 
 import { contentDs } from "~/data/contentDs";
@@ -8,6 +8,7 @@ const content = ref(contentDs);
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
+const currentType = ref(0);
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -23,6 +24,10 @@ const handleOperation = (operation, rowData) => {
             console.log("Deleting: ", rowData);
             break;
     }
+};
+
+const handleTypeChange = (newType) => {
+    currentType.value = newType;
 };
 </script>
 <template>
@@ -68,10 +73,10 @@ const handleOperation = (operation, rowData) => {
                 </div>
                 <AuPanel class="meeting_date">
                     <template #bd>
-                        <RoomTable
+                        <ContentTable
                             :columns="content.columns"
                             :data="content.data"
-                            @operation="handleOperation"></RoomTable>
+                            @operation="handleOperation"></ContentTable>
                     </template>
                 </AuPanel>
             </div>
