@@ -1,0 +1,12 @@
+.view_data {
+    .people__datatable {
+        .grid-tablerow {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    .au_datatable {
+        max-height: 235px;
+        overflow-y: auto;
+    }
+}

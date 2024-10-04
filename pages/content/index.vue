@@ -9,6 +9,7 @@ const content = ref(contentDs);
 const searchKeyword = ref("");
 const currentPage = ref(1);
 const currentType = ref(0);
+const typeOptions = ref(["全部", "桌牌", "門牌", "迎賓牌"]);
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -29,6 +30,15 @@ const handleOperation = (operation, rowData) => {
 const handleTypeChange = (newType) => {
     currentType.value = newType;
 };
+
+const filteredContentData = computed(() => {
+    if (currentType.value === 0) {
+        return content.value.data;
+    }
+    return content.value.data.filter(
+        (item) => item.can_use_device === typeOptions.value[currentType.value]
+    );
+});
 </script>
 <template>
     <main class="page_main page-date">
@@ -51,7 +61,7 @@ const handleTypeChange = (newType) => {
                     <div class="conditional-bar-filter">
                         <DropdownField
                             label="設備類型"
-                            :options="['桌牌', '門牌', '迎賓牌']"
+                            :options="typeOptions"
                             :current-selected="currentType"
                             @update:currentSelected="handleTypeChange"></DropdownField>
                     </div>
@@ -75,7 +85,7 @@ const handleTypeChange = (newType) => {
                     <template #bd>
                         <ContentTable
                             :columns="content.columns"
-                            :data="content.data"
+                            :data="filteredContentData"
                             @operation="handleOperation"></ContentTable>
                     </template>
                 </AuPanel>

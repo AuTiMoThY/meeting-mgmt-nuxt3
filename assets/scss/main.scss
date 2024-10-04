@@ -35,6 +35,7 @@
 @import "~/components/AuPanel/au_panel";
 @import "~/components/AuDatatable/au_datatable";
 @import "~/components/AuPagination/au_pagination";
+@import "~/components/AuPopup/au_popup";
 @import "~/components/FrmField/FrmBase";
 @import "~/components/FrmField/FrmField";
 @import "~/components/FrmField/FrmRcx";
@@ -49,5 +50,5 @@
 /* ↓↓↓ ***** entry ***** ↓↓↓ */
 @import "frontend/entry/grid-table";
 @import "frontend/entry/conditional-bar";
-
+@import "frontend/entry/view_data";
 /* ↑↑↑ ***** entry ***** ↑↑↑ */

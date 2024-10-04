@@ -9,6 +9,7 @@ const people = ref(peopleDs);
 const searchKeyword = ref("");
 const currentPage = ref(1);
 const currentType = ref(0);
+const typeOptions = ref(["全部", "內部", "來賓"]);
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -28,7 +29,15 @@ const handleOperation = (operation, rowData) => {
 
 const handleTypeChange = (newType) => {
     currentType.value = newType;
+    console.log("currentType", currentType.value);
 };
+
+const filteredPeopleData = computed(() => {
+    if (currentType.value === 0) {
+        return people.value.data;
+    }
+    return people.value.data.filter((item) => item.type === currentType.value);
+});
 </script>
 <template>
     <main class="page_main page-date">
@@ -51,7 +60,7 @@ const handleTypeChange = (newType) => {
                     <div class="conditional-bar-filter">
                         <DropdownField
                             label="人員類型"
-                            :options="['內部', '來賓']"
+                            :options="typeOptions"
                             :current-selected="currentType"
                             @update:currentSelected="handleTypeChange"></DropdownField>
                     </div>
@@ -75,7 +84,7 @@ const handleTypeChange = (newType) => {
                     <template #bd>
                         <PeopleTable
                             :columns="people.columns"
-                            :data="people.data"
+                            :data="filteredPeopleData"
                             @operation="handleOperation"></PeopleTable>
                     </template>
                 </AuPanel>

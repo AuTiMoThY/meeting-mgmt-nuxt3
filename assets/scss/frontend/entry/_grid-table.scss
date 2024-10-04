@@ -9,7 +9,6 @@
     }
 }
 
-
 .grid-tablerow {
     display: grid;
     gap: var(--spacing-2x);
@@ -46,21 +45,15 @@
         // background-color: var(--gray-05);
     }
 
-
-
-    &[class*='-heading'] {
+    &[class*="-heading"] {
         background-color: var(--primary-0);
         color: var(--gray-6);
         border-radius: 4px;
         overflow: hidden;
     }
 
-    &[class*='-data'] {
-
-        
+    &[class*="-data"] {
     }
-
-
 }
 
 // .grid-cell {

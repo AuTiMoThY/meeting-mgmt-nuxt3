@@ -9,20 +9,50 @@ export const contentDs = {
         {
             name: "內容A",
             can_use_device: "桌牌",
-            applied_device: 6
+            applied_device: 3
         },
         {
             name: "內容B",
-            can_use_device: "桌牌",
-            applied_device: 6
+            can_use_device: "門牌",
+            applied_device: 7
         },
         {
             name: "內容C",
-            can_use_device: "桌牌",
-            applied_device: 6
+            can_use_device: "迎賓牌",
+            applied_device: 2
         },
         {
             name: "內容D",
+            can_use_device: "桌牌",
+            applied_device: 9
+        },
+        {
+            name: "內容E",
+            can_use_device: "門牌",
+            applied_device: 5
+        },
+        {
+            name: "內容F",
+            can_use_device: "迎賓牌",
+            applied_device: 1
+        },
+        {
+            name: "內容G",
+            can_use_device: "桌牌",
+            applied_device: 8
+        },
+        {
+            name: "內容H",
+            can_use_device: "門牌",
+            applied_device: 4
+        },
+        {
+            name: "內容I",
+            can_use_device: "迎賓牌",
+            applied_device: 10
+        },
+        {
+            name: "內容J",
             can_use_device: "桌牌",
             applied_device: 6
         }
