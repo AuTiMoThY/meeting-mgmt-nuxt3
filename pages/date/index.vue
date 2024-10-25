@@ -3,6 +3,7 @@ import InputField from "~/components/FrmField/InputField.vue";
 import AuPopup from "~/components/AuPopup/AuPopup.vue";
 import { meetingDateDs } from "~/data/meetingDateDs";
 import { peopleDs } from "~/data/peopleDs";
+const router = useRouter();
 
 const meetingDate = ref({
     columns: meetingDateDs.columns,
@@ -43,6 +44,12 @@ const handleOperation = (operation, rowData) => {
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            return;
+            // 跳轉到編輯頁面
+            router.push({
+                path: "/date/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
