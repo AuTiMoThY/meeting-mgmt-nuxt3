@@ -1,12 +1,5 @@
-<!-- AbnormalEquipmentTable.vue -->
 <script setup>
-// import { defineProps, toRefs } from "vue";
-// import AuImg from "./AuImg.vue";
-
 import TextCell from "~/components/AuDatatable/cell/TextCell.vue";
-import PowerCell from "~/components/AuDatatable/cell/PowerCell.vue";
-import BluetoothCell from "~/components/AuDatatable/cell/BluetoothCell.vue";
-import WifiCell from "~/components/AuDatatable/cell/WifiCell.vue";
 import OperateCell from "~/components/AuDatatable/cell/OperateCell.vue";
 
 const props = defineProps({
@@ -20,17 +13,10 @@ const props = defineProps({
     }
 });
 const emit = defineEmits(["operation"]);
-
 const { columns, data } = toRefs(props);
 
 const getCellComponent = (columnName) => {
     switch (columnName) {
-        case "power":
-            return PowerCell;
-        case "bluetooth":
-            return BluetoothCell;
-        case "wifi":
-            return WifiCell;
         case "operate":
             return OperateCell;
         default:
@@ -39,13 +25,12 @@ const getCellComponent = (columnName) => {
 };
 
 const handleOperationEmit = (operation, rowData) => {
-    console.log("AbnormalEquipmentTable: Received operation", operation, rowData);
+    console.log("ContentTable: Received operation", operation, rowData);
     emit("operation", operation, rowData);
 };
 </script>
-
 <template>
-    <div class="au_datatable grid-table abnormal_equipment__datatable">
+    <div class="au_datatable grid-table content__datatable">
         <div class="au_datatable-heading grid-tablerow">
             <div
                 v-for="(col, index) in columns"
@@ -71,9 +56,8 @@ const handleOperationEmit = (operation, rowData) => {
         </div>
     </div>
 </template>
-
-<style scoped>
+<style lang="scss" scoped>
 .grid-tablerow {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 62px;
+    grid-template-columns: 1fr 1fr 1fr 62px;
 }
 </style>

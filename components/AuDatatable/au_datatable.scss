@@ -1,4 +1,7 @@
 .au_datatable {
+    // display: flex;
+    // flex-direction: column;
+    // gap: 16px;
     .icon-operate {
         width: 24px;
         cursor: pointer;
@@ -10,6 +13,20 @@
 
     .txt-green {
         color: color("success");
+    }
+
+    &-data {
+        &.grid-tablerow {
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+        &:not(:last-of-type) {
+            border-bottom: 1px solid var(--primary-1);
+        }
+
+        &:hover {
+            background-color: var(--primary-0);
+        }
     }
 
     &-operate {

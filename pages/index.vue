@@ -3,6 +3,10 @@ import { todayMeetingDs } from "~/data/todayMeetingDs";
 import { deviceDs } from "~/data/deviceDs";
 const todayMeeting = ref(todayMeetingDs);
 
+definePageMeta({
+    middleware: "auth"
+});
+
 // 新增計算屬性來篩選異常設備
 const abnormalEquipment = computed(() => {
     return {
@@ -13,9 +17,21 @@ const abnormalEquipment = computed(() => {
     };
 });
 
-definePageMeta({
-    middleware: "auth"
-});
+const handleOperation = (operation, rowData) => {
+    console.log("Main Program: Received operation", operation, rowData);
+    // 根據操作類型和行數據執行相應的邏輯
+    switch (operation) {
+        case "view":
+            console.log("Viewing: ", rowData);
+            break;
+        case "edit":
+            console.log("Editing: ", rowData);
+            break;
+        case "delete":
+            console.log("Deleting: ", rowData);
+            break;
+    }
+};
 onMounted(() => {});
 
 onUnmounted(() => {});
@@ -41,7 +57,8 @@ onUnmounted(() => {});
                     <template #bd>
                         <AbnormalEquipmentTable
                             :columns="abnormalEquipment.columns"
-                            :data="abnormalEquipment.data"></AbnormalEquipmentTable>
+                            :data="abnormalEquipment.data"
+                            @operation="handleOperation"></AbnormalEquipmentTable>
                     </template>
                 </AuPanel>
             </div>

@@ -1,6 +1,6 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
-import RcxField from "~/components/FrmField/RcxField.vue";
+import DropdownField from "~/components/FrmField/DropdownField.vue";
 // import { imgPath } from "~/utils/config.js";
 
 import { contentDs } from "~/data/contentDs";
@@ -8,6 +8,8 @@ const content = ref(contentDs);
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
+const currentType = ref(0);
+const typeOptions = ref(["全部", "桌牌", "門牌", "迎賓牌"]);
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -24,6 +26,19 @@ const handleOperation = (operation, rowData) => {
             break;
     }
 };
+
+const handleTypeChange = (newType) => {
+    currentType.value = newType;
+};
+
+const filteredContentData = computed(() => {
+    if (currentType.value === 0) {
+        return content.value.data;
+    }
+    return content.value.data.filter(
+        (item) => item.can_use_device === typeOptions.value[currentType.value]
+    );
+});
 </script>
 <template>
     <main class="page_main page-date">
@@ -46,7 +61,7 @@ const handleOperation = (operation, rowData) => {
                     <div class="conditional-bar-filter">
                         <DropdownField
                             label="設備類型"
-                            :options="['桌牌', '門牌', '迎賓牌']"
+                            :options="typeOptions"
                             :current-selected="currentType"
                             @update:currentSelected="handleTypeChange"></DropdownField>
                     </div>
@@ -68,10 +83,10 @@ const handleOperation = (operation, rowData) => {
                 </div>
                 <AuPanel class="meeting_date">
                     <template #bd>
-                        <RoomTable
+                        <ContentTable
                             :columns="content.columns"
-                            :data="content.data"
-                            @operation="handleOperation"></RoomTable>
+                            :data="filteredContentData"
+                            @operation="handleOperation"></ContentTable>
                     </template>
                 </AuPanel>
             </div>

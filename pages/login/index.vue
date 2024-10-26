@@ -4,8 +4,8 @@ import PasswordField from "~/components/FrmField/PasswordField.vue";
 // import { useAuthStore } from "~/stores/useAuthStore";
 const authStore = useAuthStore();
 const router = useRouter();
-
 definePageMeta({
+    middleware: "auth",
     layout: "simple"
 });
 
@@ -23,6 +23,10 @@ const handleLogin = async () => {
 const handleLoginClicked = () => {
     handleLogin();
 };
+
+onMounted(() => {
+    authStore.initializeAuth();
+});
 </script>
 <template>
     <main class="page_main page-login">

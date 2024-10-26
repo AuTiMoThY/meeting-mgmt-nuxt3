@@ -1,11 +1,30 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
-
+import AuPopup from "~/components/AuPopup/AuPopup.vue";
 import { meetingDateDs } from "~/data/meetingDateDs";
-const meetingDate = ref(meetingDateDs);
+import { peopleDs } from "~/data/peopleDs";
+const router = useRouter();
+
+const meetingDate = ref({
+    columns: meetingDateDs.columns,
+    data: meetingDateDs.data.map((item) => ({
+        ...item,
+        time: `${item.timeStart} - ${item.timeEnd}`
+    }))
+});
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
+const isViewData = ref(false);
+const viewData = ref({
+    name: "會議名稱",
+    room: "A會議室",
+    datetime: "2024/08/15 13:00",
+    people: {
+        columns: peopleDs.columns.filter((col) => col.name !== "operate"),
+        data: peopleDs.data
+    }
+});
 
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
@@ -13,9 +32,24 @@ const handleOperation = (operation, rowData) => {
     switch (operation) {
         case "view":
             console.log("Viewing: ", rowData);
+            viewData.value = {
+                ...rowData,
+                datetime: `${rowData.date} ${rowData.timeStart} - ${rowData.timeEnd}`,
+                people: {
+                    columns: peopleDs.columns.filter((col) => col.name !== "operate"),
+                    data: peopleDs.data
+                }
+            };
+            isViewData.value = true;
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            return;
+            // 跳轉到編輯頁面
+            router.push({
+                path: "/date/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
@@ -77,6 +111,21 @@ const handleOperation = (operation, rowData) => {
                 <AuPagination :total-page="5" :current-page="currentPage"></AuPagination>
             </div>
         </div>
+        <AuPopup class="view_data" v-if="isViewData" @close="isViewData = false">
+            <template #hd>
+                <div class="title">{{ viewData.name }}</div>
+                <div class="meeting-info">
+                    <span class="room">{{ viewData.room }}</span>
+                    <span class="datetime">{{ viewData.datetime }}</span>
+                </div>
+            </template>
+            <template #bd>
+                <div class="title">與會人員</div>
+                <ViewPeopleTable
+                    :columns="viewData.people.columns"
+                    :data="viewData.people.data"></ViewPeopleTable>
+            </template>
+        </AuPopup>
     </main>
 </template>
 <style lang="scss" scoped>

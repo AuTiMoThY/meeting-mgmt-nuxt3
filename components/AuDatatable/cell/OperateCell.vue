@@ -1,7 +1,4 @@
 <script setup>
-const config = useRuntimeConfig();
-const imgPath = config.public.imgPath;
-
 const props = defineProps({
     row: {
         type: Object,
