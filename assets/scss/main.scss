@@ -31,11 +31,14 @@
 @import "~/components/AuImg/au_img";
 @import "~/components/AuBtn/reset-btn";
 @import "~/components/AuBtn/au_btn";
+@import "~/components/AuBtn/au_btn-style";
 @import "~/components/AuSpacing/au_spcing";
 @import "~/components/AuPanel/au_panel";
 @import "~/components/AuDatatable/au_datatable";
 @import "~/components/AuPagination/au_pagination";
-@import "~/components/AuPopup/au_popup";
+@import "~/components/AuModal/au_modal";
+@import "~/components/AuModal/au_modal-view";
+@import "~/components/AuModal/au_modal-delete";
 @import "~/components/FrmField/FrmBase";
 @import "~/components/FrmField/FrmField";
 @import "~/components/FrmField/FrmRcx";
@@ -51,4 +54,5 @@
 @import "frontend/entry/grid-table";
 @import "frontend/entry/conditional-bar";
 @import "frontend/entry/view_data";
+@import "frontend/entry/view-device-table";
 /* ↑↑↑ ***** entry ***** ↑↑↑ */

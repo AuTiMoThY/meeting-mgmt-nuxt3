@@ -2,45 +2,32 @@
 import InputField from "~/components/FrmField/InputField.vue";
 import PasswordField from "~/components/FrmField/PasswordField.vue";
 // import { useAuthStore } from "~/stores/useAuthStore";
-// const authStore = useAuthStore();
-
-const { authenticateUser } = useAuthStore(); // use auth store
-
-const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive
-
+const authStore = useAuthStore();
 const router = useRouter();
 definePageMeta({
-    // middleware: "auth",
+    middleware: "auth",
     layout: "simple"
 });
 
 const userId = ref("");
 const userPw = ref("");
 const handleLogin = async () => {
-    try {
-        // if (!userId.value || !userPw.value) {
-        //     alert("請輸入帳號和密碼");
-        //     return;
-        // }
-
-        await authenticateUser({
-            userid: userId.value,
-            password: userPw.value
-        });
-
-        // redirect to homepage if user is authenticated
-        if (authenticated) {
-            router.push("/");
-        }
-    } catch (error) {
-        alert(error.message);
+    if (userId.value === "qq" && userPw.value === "aa") {
+        await authStore.login(); // 更新登入狀態
+        router.push("/"); // 登入成功後導向dashboard
+    } else {
+        alert("登入失敗，請檢查您的使用者名稱或密碼");
     }
 };
 
+const handleLoginClicked = () => {
+    handleLogin();
+};
+
 onMounted(() => {
-    // if (process.client) {
-    //     authStore.initializeAuth();
-    // }
+    if (process.client) {
+        authStore.initializeAuth();
+    }
 });
 </script>
 <template>
@@ -50,7 +37,7 @@ onMounted(() => {
         </div>
         <div class="login_wrap">
             <div class="login_block">
-                <form class="frm-wrap">
+                <form class="frm-wrap" @submit.prevent="handleLogin">
                     <div class="frm-row">
                         <InputField
                             id="user_id"
@@ -72,7 +59,7 @@ onMounted(() => {
                             class="au_btn-effecy"
                             txt="登入"
                             type="button"
-                            @click="handleLogin"></AuBtn>
+                            @click="handleLoginClicked"></AuBtn>
                     </div>
                 </form>
             </div>

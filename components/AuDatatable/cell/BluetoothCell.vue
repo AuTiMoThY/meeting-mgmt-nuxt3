@@ -1,13 +1,10 @@
 <script setup>
+import BluetoothTxt from "./BluetoothTxt.vue";
 defineProps({
     row: Object,
     col: Object
 });
-
-// console.log(row, col);
 </script>
 <template>
-    <span class="txt" :class="{ 'txt-red': row[col.name] == 0 }">
-        {{ row[col.name] == 0 ? "OFF" : "ON" }}
-    </span>
+    <BluetoothTxt :txt="row[col.name]"></BluetoothTxt>
 </template>

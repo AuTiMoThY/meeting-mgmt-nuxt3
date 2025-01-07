@@ -1,0 +1,25 @@
+.au_modal-delete {
+    .au_modal-wrapper {
+        width: 400px;
+    }
+
+    .au_modal-container {
+        align-items: center;
+    }
+    .au_modal-hd {
+        .title {
+            @extend .font-title;
+            color: var(--primary-color);
+        }
+    }
+
+    .au_modal-ft {
+
+    }
+
+    .btn-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+    }
+}

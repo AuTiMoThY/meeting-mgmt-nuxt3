@@ -15,6 +15,8 @@ const props = defineProps({
         required: true
     }
 });
+const emit = defineEmits(["operation"]);
+
 const { columns, data } = toRefs(props);
 
 const getCellComponent = (columnName) => {
@@ -31,6 +33,11 @@ const getCellComponent = (columnName) => {
             return TextCell;
     }
 };
+
+const handleOperationEmit = (operation, rowData) => {
+    console.log("MeetingDateTable: Received operation", operation, rowData);
+    emit("operation", operation, rowData);
+};
 </script>
 
 <template>
@@ -44,14 +51,23 @@ const getCellComponent = (columnName) => {
                 {{ col.label }}
             </div>
         </div>
-        <div v-for="(row, index) in data" :key="index" class="au_datatable-data grid-tablerow">
+        <div
+            v-for="(row, index) in data"
+            :key="index"
+            class="au_datatable-data grid-tablerow"
+            :data-id="row.id"
+            :class="{ removing: row.isRemoving }">
             <div
                 v-for="(col, c_index) in columns"
                 :key="c_index"
                 class="au_datatable-td grid-cell"
                 :class="columns[c_index].name"
                 :data-th="columns[c_index].label">
-                <component :is="getCellComponent(col.name)" :row="row" :col="col"></component>
+                <component
+                    :is="getCellComponent(col.name)"
+                    :row="row"
+                    :col="col"
+                    @operation="handleOperationEmit"></component>
             </div>
         </div>
     </div>

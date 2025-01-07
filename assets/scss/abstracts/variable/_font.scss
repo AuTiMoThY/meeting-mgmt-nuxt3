@@ -23,6 +23,12 @@ $font: (
         "ls": calc(0.04 * 1em),
         "lh": 1.5
     ),
+    "title": (
+        "fz": px-to-rem(24),
+        "fw": 700,
+        "ls": calc(0.1 * 1em),
+        "lh": 1.2
+    ),
     "title-m": (
         "fz": px-to-rem(20),
         "fw": 500,

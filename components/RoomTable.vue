@@ -43,7 +43,11 @@ const handleOperationEmit = (operation, rowData) => {
                 {{ col.label }}
             </div>
         </div>
-        <div v-for="(row, index) in data" :key="index" class="au_datatable-data grid-tablerow">
+        <div
+            v-for="(row, index) in data"
+            :key="index"
+            class="au_datatable-data grid-tablerow"
+            :class="{ removing: row.isRemoving }">
             <div
                 v-for="(col, c_index) in columns"
                 :key="c_index"

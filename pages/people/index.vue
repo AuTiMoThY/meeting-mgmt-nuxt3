@@ -1,28 +1,52 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
 import DropdownField from "~/components/FrmField/DropdownField.vue";
-// import { imgPath } from "~/utils/config.js";
 
 import { peopleDs } from "~/data/peopleDs";
 const people = ref(peopleDs);
+
+const imgPath = useConfig().imgPath;
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
 const currentType = ref(0);
 const typeOptions = ref(["全部", "內部", "來賓"]);
 
+// 定義刪除處理函數
+const handleDeletePeople = async (deleteData) => {
+    // 找到要刪除的項目索引
+    const index = people.value.data.findIndex((item) => item.id === deleteData.id);
+    if (index === -1) return;
+
+    // 設置移除動畫標記
+    people.value.data[index].isRemoving = true;
+
+    // 等待動畫完成後再實際移除資料
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    // 移除資料
+    people.value.data = people.value.data.filter((item) => item.id !== deleteData.id);
+};
+
+const {
+    isOpen: isOpenDelete,
+    data: deleteData,
+    openDelete,
+    closeDelete,
+    handleDelete
+} = useDeleteModal(handleDeletePeople);
+
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
     // 根據操作類型和行數據執行相應的邏輯
     switch (operation) {
-        case "view":
-            console.log("Viewing: ", rowData);
-            break;
         case "edit":
             console.log("Editing: ", rowData);
             break;
         case "delete":
             console.log("Deleting: ", rowData);
+            openDelete(rowData);
+
             break;
     }
 };
@@ -62,7 +86,7 @@ const filteredPeopleData = computed(() => {
                             label="人員類型"
                             :options="typeOptions"
                             :current-selected="currentType"
-                            @update:currentSelected="handleTypeChange"></DropdownField>
+                            @update:current-selected="handleTypeChange"></DropdownField>
                     </div>
                     <div class="conditional-bar-search">
                         <div class="search-field">
@@ -94,5 +118,12 @@ const filteredPeopleData = computed(() => {
                 <AuPagination :total-page="5" :current-page="currentPage"></AuPagination>
             </div>
         </div>
+        <AuModal
+            v-if="isOpenDelete"
+            modal-type="delete"
+            @close="closeDelete"
+            @delete="handleDelete">
+            <template #deleteName>{{ deleteData?.name }}</template>
+        </AuModal>
     </main>
 </template>

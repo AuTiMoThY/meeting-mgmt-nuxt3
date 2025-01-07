@@ -1,3 +1,7 @@
 // utils/config.js
-export const config = useRuntimeConfig();
-export const imgPath = config.public.imgPath;
+export const useConfig = () => {
+    const config = useRuntimeConfig();
+    return {
+        imgPath: config.public.imgPath
+    };
+};

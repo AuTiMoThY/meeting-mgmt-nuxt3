@@ -20,3 +20,12 @@ body {
         color: $color;
     }
 }
+
+
+.txt-red {
+    color: color("danger");
+}
+
+.txt-green {
+    color: color("success");
+}

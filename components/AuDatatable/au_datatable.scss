@@ -6,19 +6,19 @@
         width: 24px;
         cursor: pointer;
     }
-
-    .txt-red {
-        color: color("danger");
-    }
-
-    .txt-green {
-        color: color("success");
-    }
-
     &-data {
         &.grid-tablerow {
             padding-top: 16px;
             padding-bottom: 16px;
+            transition: all 0.3s ease;
+            &.removing {
+                opacity: 0;
+                transform: translateX(-100%);
+            }
+            &:not(.removing) {
+                transform: none !important;
+                transition: opacity 0.3s ease;
+            }
         }
         &:not(:last-of-type) {
             border-bottom: 1px solid var(--primary-1);

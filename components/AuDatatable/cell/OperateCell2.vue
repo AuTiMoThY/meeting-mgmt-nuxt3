@@ -8,10 +8,6 @@ const props = defineProps({
     col: {
         type: Object,
         required: true
-    },
-    showViewButton: {
-        type: Boolean,
-        default: true
     }
 });
 const emit = defineEmits(["operation"]);
@@ -50,15 +46,12 @@ onUnmounted(() => {
             :default-src="`${imgPath}icons/more.svg`"
             @click="toggleMenu"></AuImg>
         <div v-show="isMenuOpen" class="operate_menu">
-            <button
-                v-if="showViewButton"
-                class="operate_menu-btn reset-btn"
-                @click="handleOperation('view')">
+            <button class="operate_menu-btn reset-btn" @click="handleOperation('view')">
                 <AuImg
                     class="icon"
-                    :default-src="`${imgPath}icons/view.svg`"
-                    :hover-src="`${imgPath}icons/view-hover.svg`"></AuImg>
-                <div class="txt">查看</div>
+                    :default-src="`${imgPath}icons/eye.svg`"
+                    :hover-src="`${imgPath}icons/eye-hover.svg`"></AuImg>
+                <div class="txt">預覽</div>
             </button>
             <button class="operate_menu-btn reset-btn" @click="handleOperation('edit')">
                 <AuImg
@@ -66,6 +59,13 @@ onUnmounted(() => {
                     :default-src="`${imgPath}icons/edit.svg`"
                     :hover-src="`${imgPath}icons/edit-hover.svg`"></AuImg>
                 <div class="txt">編輯</div>
+            </button>
+            <button class="operate_menu-btn reset-btn" @click="handleOperation('send')">
+                <AuImg
+                    class="icon"
+                    :default-src="`${imgPath}icons/send.svg`"
+                    :hover-src="`${imgPath}icons/send-hover.svg`"></AuImg>
+                <div class="txt">發送</div>
             </button>
             <button class="operate_menu-btn reset-btn" @click="handleOperation('delete')">
                 <AuImg

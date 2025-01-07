@@ -1,6 +1,7 @@
 <script setup>
 import TextCell from "~/components/AuDatatable/cell/TextCell.vue";
 import OperateCell from "~/components/AuDatatable/cell/OperateCell.vue";
+// import OperateCellNoView from "~/components/AuDatatable/cell/OperateCellNoView.vue";
 
 const props = defineProps({
     columns: {
@@ -40,7 +41,11 @@ const handleOperationEmit = (operation, rowData) => {
                 {{ col.label }}
             </div>
         </div>
-        <div v-for="(row, index) in data" :key="index" class="au_datatable-data grid-tablerow">
+        <div
+            v-for="(row, index) in data"
+            :key="index"
+            class="au_datatable-data grid-tablerow"
+            :class="{ removing: row.isRemoving }">
             <div
                 v-for="(col, c_index) in columns"
                 :key="c_index"
@@ -51,6 +56,7 @@ const handleOperationEmit = (operation, rowData) => {
                     :is="getCellComponent(col.name)"
                     :row="row"
                     :col="col"
+                    :show-view-button="false"
                     @operation="handleOperationEmit"></component>
             </div>
         </div>

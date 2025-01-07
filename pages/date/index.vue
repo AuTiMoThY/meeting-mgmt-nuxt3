@@ -1,51 +1,77 @@
 <script setup>
 import InputField from "~/components/FrmField/InputField.vue";
-import AuPopup from "~/components/AuPopup/AuPopup.vue";
+import AuModal from "~/components/AuModal/AuModal.vue";
 import { meetingDateDs } from "~/data/meetingDateDs";
 import { peopleDs } from "~/data/peopleDs";
 const router = useRouter();
+
+const imgPath = useConfig().imgPath;
 
 const meetingDate = ref({
     columns: meetingDateDs.columns,
     data: meetingDateDs.data.map((item) => ({
         ...item,
-        time: `${item.timeStart} - ${item.timeEnd}`
+        time: `${item.timeStart} - ${item.timeEnd}`,
+        isRemoving: false
     }))
 });
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
-const isViewData = ref(false);
-const viewData = ref({
-    name: "會議名稱",
-    room: "A會議室",
-    datetime: "2024/08/15 13:00",
-    people: {
-        columns: peopleDs.columns.filter((col) => col.name !== "operate"),
-        data: peopleDs.data
-    }
-});
+const { isViewData, viewData, openView, closeView } = useViewData();
+// const viewData = ref({
+//     name: "會議名稱",
+//     room: "A會議室",
+//     datetime: "2024/08/15 13:00",
+//     people: {
+//         columns: peopleDs.columns.filter((col) => col.name !== "operate"),
+//         data: peopleDs.data
+//     }
+// });
 
+// 定義刪除處理函數
+const handleDeleteMeeting = async (deleteData) => {
+    // 找到要刪除的項目索引
+    const index = meetingDate.value.data.findIndex((item) => item.id === deleteData.id);
+    if (index === -1) return;
+
+    // 設置移除動畫標記
+    meetingDate.value.data[index].isRemoving = true;
+
+    // 等待動畫完成後再實際移除資料
+    await new Promise((resolve) => setTimeout(resolve, 300));
+
+    // 移除資料
+    meetingDate.value.data = meetingDate.value.data.filter((item) => item.id !== deleteData.id);
+};
+
+const {
+    isOpen: isOpenDelete,
+    data: deleteData,
+    openDelete,
+    closeDelete,
+    handleDelete
+} = useDeleteModal(handleDeleteMeeting);
 const handleOperation = (operation, rowData) => {
     console.log("Main Program: Received operation", operation, rowData);
     // 根據操作類型和行數據執行相應的邏輯
     switch (operation) {
         case "view":
             console.log("Viewing: ", rowData);
-            viewData.value = {
+            openView({
                 ...rowData,
                 datetime: `${rowData.date} ${rowData.timeStart} - ${rowData.timeEnd}`,
                 people: {
                     columns: peopleDs.columns.filter((col) => col.name !== "operate"),
-                    data: peopleDs.data
+                    data: peopleDs.data.slice(0, rowData.people)
                 }
-            };
-            isViewData.value = true;
+            });
+
             break;
         case "edit":
             console.log("Editing: ", rowData);
-            return;
-            // 跳轉到編輯頁面
+            // return;
+            // // 跳轉到編輯頁面
             router.push({
                 path: "/date/edit",
                 query: { id: rowData.id }
@@ -53,6 +79,7 @@ const handleOperation = (operation, rowData) => {
             break;
         case "delete":
             console.log("Deleting: ", rowData);
+            openDelete(rowData);
             break;
     }
 };
@@ -111,7 +138,7 @@ const handleOperation = (operation, rowData) => {
                 <AuPagination :total-page="5" :current-page="currentPage"></AuPagination>
             </div>
         </div>
-        <AuPopup class="view_data" v-if="isViewData" @close="isViewData = false">
+        <AuModal v-if="isViewData" class="view_data" @close="closeView">
             <template #hd>
                 <div class="title">{{ viewData.name }}</div>
                 <div class="meeting-info">
@@ -125,7 +152,14 @@ const handleOperation = (operation, rowData) => {
                     :columns="viewData.people.columns"
                     :data="viewData.people.data"></ViewPeopleTable>
             </template>
-        </AuPopup>
+        </AuModal>
+        <AuModal
+            v-if="isOpenDelete"
+            modal-type="delete"
+            @close="closeDelete"
+            @delete="handleDelete">
+            <template #deleteName>{{ deleteData?.name }}</template>
+        </AuModal>
     </main>
 </template>
 <style lang="scss" scoped>

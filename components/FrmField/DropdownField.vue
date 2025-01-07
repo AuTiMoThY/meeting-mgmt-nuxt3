@@ -1,4 +1,6 @@
 <script setup>
+const imgPath = useConfig().imgPath;
+
 const props = defineProps({
     label: String,
     options: Array,
@@ -38,14 +40,14 @@ const toggleMenu = () => {
             </div>
             <AuImg class="arrow" :default-src="`${imgPath}icons/dropdown-arrow.svg`"></AuImg>
         </div>
-        <div class="frm_dropdown-menu" ref="menu">
+        <div ref="menu" class="frm_dropdown-menu">
             <ul class="frm_dropdown-menu-list">
                 <li
-                    class="frm_dropdown-menu-item"
                     v-for="(option, index) in options"
                     :key="index"
-                    @click="handleOptionClick(index)"
-                    :class="{ active: index === currentSelected }">
+                    class="frm_dropdown-menu-item"
+                    :class="{ active: index === currentSelected }"
+                    @click="handleOptionClick(index)">
                     {{ option }}
                 </li>
             </ul>

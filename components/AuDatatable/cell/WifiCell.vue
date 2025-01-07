@@ -1,4 +1,5 @@
 <script setup>
+import WifiTxt from "./WifiTxt.vue";
 defineProps({
     row: Object,
     col: Object
@@ -7,7 +8,5 @@ defineProps({
 // console.log(row, col);
 </script>
 <template>
-    <span class="txt" :class="{ 'txt-red': row[col.name] == 0 }">
-        {{ row[col.name] == 0 ? "OFF" : "ON" }}
-    </span>
+    <WifiTxt :txt="row[col.name]"></WifiTxt>
 </template>

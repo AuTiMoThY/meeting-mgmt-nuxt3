@@ -8,6 +8,7 @@ export const peopleDs = {
     ],
     data: [
         {
+            id: 1,
             name: "張小明",
             comp: "科技創新有限公司",
             department: "研發部",
@@ -15,6 +16,7 @@ export const peopleDs = {
             type: 1
         },
         {
+            id: 2,
             name: "李美玲",
             comp: "科技創新有限公司",
             department: "行銷部",
@@ -22,6 +24,7 @@ export const peopleDs = {
             type: 1
         },
         {
+            id: 3,
             name: "王大為",
             comp: "綠能環保企業",
             department: "生產部",
@@ -29,6 +32,7 @@ export const peopleDs = {
             type: 2
         },
         {
+            id: 4,
             name: "陳雅琪",
             comp: "科技創新有限公司",
             department: "人力資源部",
@@ -36,6 +40,7 @@ export const peopleDs = {
             type: 1
         },
         {
+            id: 5,
             name: "林志豪",
             comp: "綠能環保企業",
             department: "財務部",
@@ -43,6 +48,7 @@ export const peopleDs = {
             type: 2
         },
         {
+            id: 6,
             name: "黃詩涵",
             comp: "綠能環保企業",
             department: "客戶服務部",
@@ -50,6 +56,7 @@ export const peopleDs = {
             type: 2
         },
         {
+            id: 7,
             name: "吳建志",
             comp: "科技創新有限公司",
             department: "銷售部",
@@ -57,6 +64,7 @@ export const peopleDs = {
             type: 1
         },
         {
+            id: 8,
             name: "蔡佳玲",
             comp: "綠能環保企業",
             department: "物流部",
@@ -64,6 +72,7 @@ export const peopleDs = {
             type: 2
         },
         {
+            id: 9,
             name: "郭俊傑",
             comp: "綠能環保企業",
             department: "研發部",
@@ -71,6 +80,7 @@ export const peopleDs = {
             type: 2
         },
         {
+            id: 10,
             name: "許雅婷",
             comp: "科技創新有限公司",
             department: "品質管理部",

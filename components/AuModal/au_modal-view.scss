@@ -1,0 +1,30 @@
+.au_modal-view {
+    .au_modal-hd {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .title {
+            @extend .font-title-s;
+        }
+
+        .meeting-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid var(--primary-01, #c6daeb);
+            background: var(--primary-00, #f5faff);
+        }
+    }
+
+    .au_modal-bd {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        .title {
+            @extend .font-title-s;
+        }
+    }
+}
