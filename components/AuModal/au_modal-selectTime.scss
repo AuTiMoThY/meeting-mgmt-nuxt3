@@ -1,0 +1,28 @@
+.au_modal-selectTime {
+    .au_modal-wrapper {
+        width: 400px;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .select-hour-btns {
+        display: flex;
+        // flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+
+        .au_btn {
+            min-width: 0;
+            width: 45px;
+            height: 45px;
+        }
+
+        .au_btn-inner {
+            padding: 0;
+            height: 100%;
+        }
+    }
+}

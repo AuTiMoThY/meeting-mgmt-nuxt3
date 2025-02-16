@@ -1,0 +1,55 @@
+.style-select-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.meeting-info {
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    &-hd {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        padding: 8px 16px;
+        background-color: var(--primary-0);
+        border: 1px solid var(--primary-1);
+        border-radius: 8px;
+    }
+    &-bd {
+        padding: 8px 16px;
+        background-color: var(--primary-0);
+        border: 1px solid var(--primary-1);
+        border-radius: 8px;
+
+        .title {
+            @include font_setting("title-s");
+            color: var(--primary-5);
+        }
+
+        .people-list {
+            padding-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .people-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            :not(.name) {
+                @include font_setting("note");
+                color: var(--gray-3);
+            }
+            .name {
+                @include font_setting("body");
+                // color: var(--primary-5);
+            }
+        }
+    }
+}

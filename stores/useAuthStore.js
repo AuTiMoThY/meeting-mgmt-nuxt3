@@ -87,7 +87,7 @@ export const useAuthStore = defineStore("auth", () => {
         // }
     }
 
-    function logUserOut() {
+    function logOut() {
         const token = useCookie("token");
         authenticated.value = false;
         token.value = null;
@@ -99,6 +99,6 @@ export const useAuthStore = defineStore("auth", () => {
         loading,
         // actions
         authenticateUser,
-        logUserOut
+        logOut
     };
 });

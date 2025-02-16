@@ -6,7 +6,7 @@
     }
 
     .au_datatable {
-        max-height: 235px;
+        max-height: calc(80vh - (32px * 3) - 80px);
         overflow-y: auto;
     }
 }

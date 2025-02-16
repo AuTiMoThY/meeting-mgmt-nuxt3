@@ -23,7 +23,7 @@ const handleOptionClick = (option) => {
 
 // 新增一個計算屬性來獲取當前選中的值
 const currentValue = computed(() => {
-    return props.options[props.currentSelected] || "請選擇";
+    return props.options.find((item) => item.id === props.currentSelected)?.label || "請選擇";
 });
 
 const toggleMenu = () => {
@@ -46,9 +46,9 @@ const toggleMenu = () => {
                     v-for="(option, index) in options"
                     :key="index"
                     class="frm_dropdown-menu-item"
-                    :class="{ active: index === currentSelected }"
-                    @click="handleOptionClick(index)">
-                    {{ option }}
+                    :class="{ active: option.id === currentSelected }"
+                    @click="handleOptionClick(option.id)">
+                    {{ option.label }}
                 </li>
             </ul>
         </div>

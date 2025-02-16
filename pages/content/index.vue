@@ -3,14 +3,23 @@ import InputField from "~/components/FrmField/InputField.vue";
 import DropdownField from "~/components/FrmField/DropdownField.vue";
 
 import { contentDs } from "~/data/contentDs";
+import { deviceTypeDs } from "~/data/deviceTypeDs";
 const content = ref(contentDs);
+const deviceType = ref(deviceTypeDs);
 
 const imgPath = useConfig().imgPath;
+const router = useRouter();
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
 const currentType = ref(0);
-const typeOptions = ref(["全部", "桌牌", "門牌", "迎賓牌"]);
+const typeOptions = ref([
+    { id: 0, label: "全部" },
+    ...deviceType.value.data.map((item) => ({
+        ...item,
+        label: item.name
+    }))
+]);
 
 const isViewData = ref(false);
 const viewData = ref(null);
@@ -68,11 +77,21 @@ const handleOperation = (operation, rowData) => {
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            router.push({
+                path: "/content/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
             openDelete(rowData);
-
+            break;
+        case "send":
+            console.log("Sending: ", rowData);
+            router.push({
+                path: "/content/send",
+                query: { id: rowData.id }
+            });
             break;
     }
 };
@@ -83,19 +102,34 @@ const handleTypeChange = (newType) => {
 
 const filteredContentData = computed(() => {
     if (currentType.value === 0) {
-        return content.value.data;
+        return content.value.data.map((item) => ({
+            ...item,
+            can_use_deviceName: item.can_use_device.name
+        }));
     }
-    return content.value.data.filter(
-        (item) => item.can_use_device === typeOptions.value[currentType.value]
-    );
+    return content.value.data
+        .filter((item) => item.can_use_device.id === currentType.value)
+        .map((item) => ({
+            ...item,
+            can_use_deviceName: item.can_use_device.name
+        }));
 });
+
+const handleAddContent = () => {
+    router.push({
+        path: "/content/edit",
+        query: {
+            type: currentType.value
+        }
+    });
+};
 </script>
 <template>
     <main class="page_main page-date">
         <div class="container">
             <div class="page_main-hd">
                 <h1 class="title">內容管理</h1>
-                <button class="btn-add-date reset-btn">
+                <button class="btn-add-date reset-btn" @click="handleAddContent">
                     <AuBtn
                         class="au_btn-float"
                         txt="新增內容"

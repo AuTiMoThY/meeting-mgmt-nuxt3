@@ -5,7 +5,7 @@ const props = defineProps({
     label: String,
     id: String,
     options: Array,
-    currentSelected: Number
+    modelValue: [Object, String, Number]
 });
 // const emit = defineEmits(["update:modelValue"]);
 // const isFocused = ref(false);
@@ -34,28 +34,80 @@ const props = defineProps({
 //     }
 // );
 
-const emit = defineEmits(["update:currentSelected"]);
+const emit = defineEmits(["update:modelValue"]);
 const menu = ref(null);
+const dropdownId = ref(Symbol("dropdown-menu-id")); // 為每個下拉選單創建唯一ID
 
-const value = computed({
-    get: () => props.currentSelected,
-    set: (newValue) => emit("update:currentSelected", newValue)
+// 創建事件總線來管理下拉選單
+const closeOtherDropdowns = (currentId) => {
+    if (currentId !== dropdownId.value && menu.value?.classList.contains("show")) {
+        menu.value.classList.remove("show");
+    }
+};
+
+const handleClickOutside = (event) => {
+    if (
+        menu.value &&
+        !menu.value.contains(event.target) &&
+        !event.target.closest(".frm_dropdown-inner")
+    ) {
+        menu.value.classList.remove("show");
+    }
+};
+
+const selectedValue = computed({
+    get: () => props.modelValue,
+    set: (newValue) => emit("update:modelValue", newValue)
 });
 
-// 新增一個方法來處理選項的點擊
+// 處理選項的點擊
 const handleOptionClick = (option) => {
-    value.value = option;
+    // console.log("option", option);
+    selectedValue.value = option;
     toggleMenu();
 };
 
-// 新增一個計算屬性來獲取當前選中的值
+// 獲取當前選中的值
 const currentValue = computed(() => {
-    return props.options[props.currentSelected] || "請選擇";
+    if (typeof props.modelValue === "object") {
+        return props.modelValue?.label || props.modelValue?.name || "請選擇";
+    }
+    // 如果是字串或數字，直接返回該值
+    return props.modelValue || "請選擇";
 });
 
 const toggleMenu = () => {
+    // 觸發關閉其他下拉選單的事件
+    window.dispatchEvent(
+        new CustomEvent("closeDropdowns", {
+            detail: { id: dropdownId.value }
+        })
+    );
     menu.value.classList.toggle("show");
 };
+
+watch(
+    () => props.modelValue,
+    (newVal) => {
+        console.log("newVal", newVal);
+    }
+);
+
+onMounted(() => {
+    // 註冊全局事件監聽器
+    window.addEventListener("closeDropdowns", (e) => {
+        closeOtherDropdowns(e.detail.id);
+    });
+    document.addEventListener("click", handleClickOutside);
+
+    console.log("props.options", props.options);
+});
+
+onUnmounted(() => {
+    // 移除事件監聽器
+    window.removeEventListener("closeDropdowns", closeOtherDropdowns);
+    document.removeEventListener("click", handleClickOutside);
+});
 </script>
 <template>
     <div class="frm_field">
@@ -77,9 +129,9 @@ const toggleMenu = () => {
                                 v-for="(option, index) in options"
                                 :key="index"
                                 class="frm_dropdown-menu-item"
-                                :class="{ active: index === currentSelected }"
-                                @click="handleOptionClick(index)">
-                                {{ option }}
+                                :class="{ active: option.id === modelValue.id }"
+                                @click="handleOptionClick(option)">
+                                {{ option.label }}
                             </li>
                         </ul>
                     </div>
@@ -91,11 +143,5 @@ const toggleMenu = () => {
 <style lang="scss">
 .frm_dropdown {
     width: 100%;
-}
-.frm_dropdown-menu {
-    display: none;
-}
-.frm_dropdown-menu.show {
-    display: block;
 }
 </style>

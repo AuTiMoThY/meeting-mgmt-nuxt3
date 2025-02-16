@@ -5,7 +5,15 @@ import WifiTxt from "~/components/AuDatatable/cell/WifiTxt.vue";
 import { todayMeetingDs } from "~/data/todayMeetingDs";
 import { deviceDs } from "~/data/deviceDs";
 const device = ref(deviceDs);
+
+device.value.data = device.value.data.map((item) => ({
+    ...item,
+    typeName: item.type.name
+}));
+
 const todayMeeting = ref(todayMeetingDs);
+
+const router = useRouter();
 
 // const token = useCookie("token");
 // definePageMeta({
@@ -15,6 +23,9 @@ const todayMeeting = ref(todayMeetingDs);
 const isViewData = ref(false);
 const viewData = ref(null);
 
+useHead({
+    title: "首頁"
+});
 // 新增計算屬性來篩選異常設備
 const abnormalEquipment = computed(() => {
     return {
@@ -61,6 +72,10 @@ const handleOperation = (operation, rowData) => {
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            router.push({
+                path: "/device/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
@@ -112,7 +127,7 @@ onUnmounted(() => {});
                 <div class="view-device-table">
                     <div class="table-row">
                         <div class="table-cell title">類型</div>
-                        <div class="table-cell content">{{ viewData.type }}</div>
+                        <div class="table-cell content">{{ viewData.type.name }}</div>
                     </div>
                     <div class="table-row">
                         <div class="table-cell title">電量</div>

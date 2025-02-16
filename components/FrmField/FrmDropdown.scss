@@ -31,11 +31,15 @@
         @include absolute(100%, $L: 0);
         width: 100%;
 
+        display: none;
+
         &-list {
             display: flex;
             flex-direction: column;
             gap: 8px;
 
+            max-height: 300px;
+            overflow-y: auto;
             padding: 8px;
             border-radius: 8px;
             border: 1px solid var(--primary-01, #c6daeb);
@@ -64,6 +68,12 @@
                 border: 1px solid rgba(#c6daeb, 1);
                 background-color: rgba(#f5faff, 1);
             }
+        }
+
+        &.show {
+            // position: relative;
+            z-index: 999;
+            display: block;
         }
     }
 }

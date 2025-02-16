@@ -83,7 +83,7 @@
         border-radius: 4px;
 
         &:hover,
-        &.router-link-active {
+        .is-active & {
             background: var(--gray-00, #fff);
             /* shadow/btn */
             box-shadow:

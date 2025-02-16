@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     devServer: {
         port: 8090
     },
-    modules: ["@pinia/nuxt", "@nuxtjs/google-fonts"],
+    modules: ["@pinia/nuxt", "@nuxtjs/google-fonts", "@samk-dev/nuxt-vcalendar"],
     googleFonts: {
         families: {
             "Noto+Sans+TC": "100..900"

@@ -26,6 +26,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        .frm-wrap {
+            flex-direction: column;
+        }
     }
 
     .login_block {

@@ -3,6 +3,9 @@ import InputField from "~/components/FrmField/InputField.vue";
 import AuModal from "~/components/AuModal/AuModal.vue";
 import { meetingDateDs } from "~/data/meetingDateDs";
 import { peopleDs } from "~/data/peopleDs";
+useHead({
+    title: "會議管理"
+});
 const router = useRouter();
 
 const imgPath = useConfig().imgPath;
@@ -11,8 +14,10 @@ const meetingDate = ref({
     columns: meetingDateDs.columns,
     data: meetingDateDs.data.map((item) => ({
         ...item,
+        people: item.peopleList.length,
         time: `${item.timeStart} - ${item.timeEnd}`,
-        isRemoving: false
+        isRemoving: false,
+        roomName: item.room.room
     }))
 });
 
@@ -63,7 +68,7 @@ const handleOperation = (operation, rowData) => {
                 datetime: `${rowData.date} ${rowData.timeStart} - ${rowData.timeEnd}`,
                 people: {
                     columns: peopleDs.columns.filter((col) => col.name !== "operate"),
-                    data: peopleDs.data.slice(0, rowData.people)
+                    data: rowData.peopleList
                 }
             });
 
@@ -83,13 +88,16 @@ const handleOperation = (operation, rowData) => {
             break;
     }
 };
+const handleAddMeeting = () => {
+    router.push("/date/edit");
+};
 </script>
 <template>
     <main class="page_main page-date">
         <div class="container">
             <div class="page_main-hd">
                 <h1 class="title">會議管理</h1>
-                <button class="btn-add-date reset-btn">
+                <button class="btn-add-date reset-btn" @click="handleAddMeeting">
                     <AuBtn
                         class="au_btn-float"
                         txt="新增會議"
@@ -142,7 +150,7 @@ const handleOperation = (operation, rowData) => {
             <template #hd>
                 <div class="title">{{ viewData.name }}</div>
                 <div class="meeting-info">
-                    <span class="room">{{ viewData.room }}</span>
+                    <span class="room">{{ viewData.roomName }}</span>
                     <span class="datetime">{{ viewData.datetime }}</span>
                 </div>
             </template>

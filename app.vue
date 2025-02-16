@@ -4,7 +4,7 @@ const basePath = config.public.basePath;
 
 useHead({
     titleTemplate: (titleChunk) => {
-        return titleChunk ? `${titleChunk} - Meeting Management` : "Meeting Management";
+        return titleChunk ? `${titleChunk} - 會議管理系統` : "會議管理系統";
     },
     meta: [
         { name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no" },

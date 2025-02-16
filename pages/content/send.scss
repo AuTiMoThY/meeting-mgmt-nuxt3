@@ -1,0 +1,14 @@
+.select_device-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.select_device-hd {
+    display: flex;
+    justify-content: space-between;
+}
+.device__datatable {
+    .grid-tablerow {
+        grid-template-columns: 45px 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+}

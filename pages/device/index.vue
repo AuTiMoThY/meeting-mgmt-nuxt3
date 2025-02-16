@@ -8,7 +8,16 @@ import WifiTxt from "~/components/AuDatatable/cell/WifiTxt.vue";
 import { deviceDs } from "~/data/deviceDs";
 const device = ref(deviceDs);
 
+device.value.data = device.value.data.map((item) => ({
+    ...item,
+    typeName: item.type.name
+}));
+const router = useRouter();
 const imgPath = useConfig().imgPath;
+
+useHead({
+    title: "設備管理"
+});
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
@@ -60,6 +69,10 @@ const handleOperation = (operation, rowData) => {
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            router.push({
+                path: "/device/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
@@ -77,13 +90,17 @@ const filteredDeviceData = computed(() => {
     }
     return device.value.data;
 });
+
+const handleAddDevice = () => {
+    router.push("/device/edit");
+};
 </script>
 <template>
     <main class="page_main page-date">
         <div class="container">
             <div class="page_main-hd">
                 <h1 class="title">設備管理</h1>
-                <button class="btn-add-date reset-btn">
+                <button class="btn-add-date reset-btn" @click="handleAddDevice">
                     <AuBtn
                         class="au_btn-float"
                         txt="新增設備"
@@ -142,7 +159,7 @@ const filteredDeviceData = computed(() => {
                 <div class="view-device-table">
                     <div class="table-row">
                         <div class="table-cell title">類型</div>
-                        <div class="table-cell content">{{ viewData.type }}</div>
+                        <div class="table-cell content">{{ viewData.typeName }}</div>
                     </div>
                     <div class="table-row">
                         <div class="table-cell title">電量</div>

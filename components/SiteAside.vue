@@ -1,8 +1,9 @@
 <script setup>
-import { useRoute } from "vue-router";
 const route = useRoute();
+const router = useRouter();
 const config = useRuntimeConfig();
 const imgPath = config.public.imgPath;
+
 const props = defineProps({
     isOpen: {
         type: Boolean,
@@ -59,7 +60,23 @@ const navData = [
 ];
 
 const isCurrentRoute = (itemLink) => {
-    return route.path === itemLink;
+    const currentPath = route.path.slice(1);
+    const navPath = itemLink.slice(1);
+
+    return currentPath.startsWith(navPath);
+};
+
+const { logOut } = useAuthStore();
+const { isOpenLogout, openLogout, closeLogout } = useLogoutModal();
+
+const handleLogout = () => {
+    openLogout();
+};
+
+const confirmLogout = () => {
+    logOut();
+    router.push("/login");
+    closeLogout();
 };
 </script>
 <template>
@@ -72,14 +89,14 @@ const isCurrentRoute = (itemLink) => {
             </div>
             <div class="site_aside-bd">
                 <nav class="site_nav">
-                    <div class="site_nav-group" v-for="(group, index) in navData" :key="index">
+                    <div v-for="(group, index) in navData" :key="index" class="site_nav-group">
                         <div class="group-title">{{ group.group }}</div>
                         <ul class="site_nav-list">
                             <li
+                                v-for="(item, itemIndex) in group.list"
+                                :key="itemIndex"
                                 class="site_nav-item"
-                                :class="{ 'is-active': isCurrentRoute(item.link) }"
-                                v-for="(item, index) in group.list"
-                                :key="index">
+                                :class="{ 'is-active': isCurrentRoute(item.link) }">
                                 <NuxtLink :to="item.link" class="site_nav-link">
                                     <span class="icon">
                                         <AuImg :default-src="item.icon"></AuImg>
@@ -93,10 +110,19 @@ const isCurrentRoute = (itemLink) => {
             </div>
             <div class="site_aside-ft">
                 <div class="account-connect">
+                    <div class="label">管理員(科技創新有限公司)您好</div>
                     <div class="label">連結中帳號</div>
                     <div class="email">ABC1234@gmail.com</div>
+                    <AuBtn
+                        class="au_btn-effecy"
+                        txt="登出"
+                        type="button"
+                        @click="handleLogout"></AuBtn>
                 </div>
             </div>
+            <div class="version font-note">ver.20250116</div>
         </div>
     </aside>
+    <AuModal v-if="isOpenLogout" modal-type="logout" @close="closeLogout" @logout="confirmLogout">
+    </AuModal>
 </template>

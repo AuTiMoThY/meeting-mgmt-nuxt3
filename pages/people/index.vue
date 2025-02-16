@@ -6,11 +6,32 @@ import { peopleDs } from "~/data/peopleDs";
 const people = ref(peopleDs);
 
 const imgPath = useConfig().imgPath;
+const router = useRouter();
+
+useHead({
+    title: "人員管理"
+});
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
 const currentType = ref(0);
-const typeOptions = ref(["全部", "內部", "來賓"]);
+const typeOptions = ref([
+    {
+        id: 0,
+        name: "全部",
+        label: "全部"
+    },
+    {
+        id: 1,
+        name: "內部",
+        label: "內部"
+    },
+    {
+        id: 2,
+        name: "來賓",
+        label: "來賓"
+    }
+]);
 
 // 定義刪除處理函數
 const handleDeletePeople = async (deleteData) => {
@@ -42,6 +63,10 @@ const handleOperation = (operation, rowData) => {
     switch (operation) {
         case "edit":
             console.log("Editing: ", rowData);
+            router.push({
+                path: "/people/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
@@ -62,13 +87,17 @@ const filteredPeopleData = computed(() => {
     }
     return people.value.data.filter((item) => item.type === currentType.value);
 });
+
+const handleAddPeople = () => {
+    router.push("/people/edit");
+};
 </script>
 <template>
     <main class="page_main page-date">
         <div class="container">
             <div class="page_main-hd">
                 <h1 class="title">人員管理</h1>
-                <button class="btn-add-date reset-btn">
+                <button class="btn-add-date reset-btn" @click="handleAddPeople">
                     <AuBtn
                         class="au_btn-float"
                         txt="新增人員"

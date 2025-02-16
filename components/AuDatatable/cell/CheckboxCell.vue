@@ -1,21 +1,36 @@
 <script setup>
 const props = defineProps({
-    label: String,
-    rcxId: [Number, String],
-    modelValue: Boolean
+    row: {
+        type: Object,
+        required: true
+    },
+    col: {
+        type: Object,
+        required: true
+    }
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const emit = defineEmits(["update:checked"]);
+const isChecked = ref(false);
 
-const value = computed({
-    get: () => props.modelValue,
-    set: (newValue) => emit("update:modelValue", newValue)
-});
+const handleChange = (event) => {
+    isChecked.value = event.target.checked;
+    emit("update:checked", {
+        id: props.row.id,
+        checked: isChecked.value
+    });
+};
 </script>
+
 <template>
-    <div class="frm_rcx">
-        <label :for="props.rcxId" class="frm_rcx-label">
-            <input :id="props.rcxId" v-model="value" type="checkbox" class="frm_rcx-input" />
+    <div class="checkbox-cell">
+        <label :for="'device-' + row.id" class="frm_rcx-label">
+            <input
+                :id="'device-' + row.id"
+                v-model="isChecked"
+                type="checkbox"
+                class="frm_rcx-input"
+                @change="handleChange" />
             <div class="frm_rcx-inner">
                 <div class="choicemark">
                     <svg
@@ -47,3 +62,56 @@ const value = computed({
         </label>
     </div>
 </template>
+
+<style lang="scss" scoped>
+.checkbox-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.au_checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &-label {
+        position: relative;
+        cursor: pointer;
+        height: 20px;
+        width: 20px;
+        background: var(--white);
+        border: 1px solid var(--gray-3);
+        border-radius: 4px;
+        transition: all 0.2s ease;
+
+        &:hover {
+            border-color: var(--primary-5);
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 6px;
+            top: 2px;
+            width: 6px;
+            height: 12px;
+            border: solid var(--white);
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    }
+
+    &:checked + &-label {
+        background: var(--primary-5);
+        border-color: var(--primary-5);
+
+        &::after {
+            display: block;
+        }
+    }
+}
+</style>

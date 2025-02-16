@@ -1,0 +1,19 @@
+
+.frm_field-selectcheckbox {
+    .frm_dropdown-inner {
+        .current {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            .selected-item {
+                display: inline-block;
+                padding: 4px 8px;
+                border-radius: 4px;
+                background-color: var(--gray-1);
+                // background-color: var(--primary-1);
+                // color: var(--primary-5);
+            }
+        }
+    }
+}

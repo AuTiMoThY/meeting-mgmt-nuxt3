@@ -5,8 +5,13 @@ import RcxField from "~/components/FrmField/RcxField.vue";
 import { roomDs } from "~/data/roomDs";
 import { meetingDateDs } from "~/data/meetingDateDs";
 const room = ref(roomDs);
+const router = useRouter();
 
 const imgPath = useConfig().imgPath;
+
+useHead({
+    title: "會議室管理"
+});
 
 const searchKeyword = ref("");
 const currentPage = ref(1);
@@ -68,16 +73,19 @@ const handleOperation = (operation, rowData) => {
                 isShowTodayMeeting: false,
                 meetingData: {
                     columns: meetingDateDs.columns
-                        .filter((col) => col.name !== "operate" && col.name !== "room")
+                        .filter((col) => col.name !== "operate" && col.name !== "roomName")
                         .sort((a, b) => {
                             const order = ["name", "date", "time", "people"];
                             return order.indexOf(a.name) - order.indexOf(b.name);
                         }),
                     data: computed(() => {
-                        const filteredData = meetingData.map((item) => ({
-                            ...item,
-                            time: `${item.timeStart} - ${item.timeEnd}`
-                        }));
+                        const filteredData = meetingDateDs.data
+                            .filter((item) => item.room.id === rowData.id)
+                            .map((item) => ({
+                                ...item,
+                                time: `${item.timeStart} - ${item.timeEnd}`,
+                                people: item.peopleList.length
+                            }));
 
                         if (viewData.value?.isShowTodayMeeting) {
                             // const today = new Date()
@@ -87,17 +95,22 @@ const handleOperation = (operation, rowData) => {
                             //         day: "2-digit"
                             //     })
                             //     .replace(/\//g, "/");
-                            const today = "2024/05/08";
+                            const today = "2025/01/10";
                             return filteredData.filter((item) => item.date === today);
                         }
                         return filteredData;
                     })
                 }
             };
+            console.log("viewData", viewData.value);
             isViewData.value = true;
             break;
         case "edit":
             console.log("Editing: ", rowData);
+            router.push({
+                path: "/room/edit",
+                query: { id: rowData.id }
+            });
             break;
         case "delete":
             console.log("Deleting: ", rowData);
@@ -113,13 +126,16 @@ const filteredRoomData = computed(() => {
     }
     return room.value.data;
 });
+const handleAddRoom = () => {
+    router.push("/room/edit");
+};
 </script>
 <template>
     <main class="page_main page-date">
         <div class="container">
             <div class="page_main-hd">
                 <h1 class="title">會議室管理</h1>
-                <button class="btn-add-date reset-btn">
+                <button class="btn-add-date reset-btn" @click="handleAddRoom">
                     <AuBtn
                         class="au_btn-float"
                         txt="新增會議室"

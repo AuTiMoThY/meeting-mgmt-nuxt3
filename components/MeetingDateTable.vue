@@ -75,7 +75,7 @@ const handleOperationEmit = (operation, rowData) => {
     grid-template-columns: 120px 120px 1fr 40px 100px 62px;
 
     .people,
-    .room {
+    .roomName {
         text-align: right;
     }
 }
