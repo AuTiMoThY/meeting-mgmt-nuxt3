@@ -1,75 +1,45 @@
-# Nuxt 3 Minimal Starter
+# 會議管理系統
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## 📝 專案簡介
+是一個會議管理平台，提供使用者管理會議及會議室，並能將會議資訊傳送至設備。
 
-## Setup
 
-Make sure to install the dependencies:
+## 🔗 相關連結
+- [前台網站](https://demo.auozzy.com/meeting-mgmt/)
 
-```bash
-# npm
-npm install
+## ✨ 功能特點
+### 前台功能
+- 會議管理
+    - 可查看所有會議列表、會議資訊
+    - 可新增、修改、刪除會議
+- 會議室管理
+    - 可查看所有會議室列表、會議室資訊
+    - 可新增、修改、刪除會議室
+- 設備管理
+    - 可查看所有設備列表、設備資訊
+    - 可新增、修改、刪除設備
+- 內容管理
+    - 可查看所有內容列表、預覽內容資訊
+    - 可新增、修改、刪除內容
+    - 將內容發送至設備
+- 人員管理
+    - 可查看所有人員列表、人員資訊
+    - 可新增、修改、刪除人員
 
-# pnpm
-pnpm install
+## 🛠 技術
+### 前端
+- Nuxt 3 框架
+- Pinia 狀態管理
+- SCSS 樣式處理
 
-# yarn
-yarn install
+### 開發特色
+- RWD響應式設計，支援電腦、手機瀏覽
+- 優化的使用者互動效果
+- 組件化開發，提高代碼復用性
+- 自定義資料表格元件，可依狀態做不同呈現
+- 自定義提示訊息元件，根據操作結果呈現不同訊息
 
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## 📸 系統展示
+![首頁](https://demo.auozzy.com/picture/meeting-index.jpg)
+![編輯頁](https://demo.auozzy.com/picture/meeting-edit.jpg)
+![提示訊息](https://demo.auozzy.com/picture/meeting-modal.jpg)

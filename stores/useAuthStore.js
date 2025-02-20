@@ -47,7 +47,7 @@ export const useAuthStore = defineStore("auth", () => {
         loading.value = true;
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
-        if (userid !== "qq" || password !== "aa") {
+        if (userid !== "demo" || password !== "demo") {
             throw new Error("帳號或密碼錯誤");
         }
 

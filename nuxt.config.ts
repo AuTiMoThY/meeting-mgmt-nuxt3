@@ -1,5 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-const basePath = process.env.BASE_PATH || "/";
+const basePath = process.env.BASE_PATH || "/meeting-mgmt/";
 
 export default defineNuxtConfig({
     compatibilityDate: "2024-08-02",
