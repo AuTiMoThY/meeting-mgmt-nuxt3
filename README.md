@@ -26,6 +26,37 @@
     - 可查看所有人員列表、人員資訊
     - 可新增、修改、刪除人員
 
+## 💻 環境要求
+- Node.js v22.11.0
+- npm v10.9.0
+
+## 🔧 安裝說明
+1. 下載專案
+```bash
+git clone https://github.com/AuTiMoThY/meeting-mgmt-nuxt3.git
+cd meeting-mgmt-nuxt3
+``` 
+
+2. 安裝依賴
+```bash
+npm install
+```
+
+3. 啟動開發伺服器
+```bash
+npm run dev
+```
+
+4. 訪問網站
+```bash
+http://localhost:8090
+```
+
+5. 輸出靜態檔案
+```bash
+npm run generate
+```
+
 ## 🛠 技術
 ### 前端
 - Nuxt 3 框架
